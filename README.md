@@ -9,3 +9,12 @@ curl https://storage.yandexcloud.net/yandexcloud-yc/install.sh | bash
 ```
 yc init
 ```
+
+## Get token, cloud-id, folder-id
+```
+yc config list
+token: xxx
+cloud-id: xxx
+folder-id: xxxx
+compute-default-zone: ru-central1-c
+```
