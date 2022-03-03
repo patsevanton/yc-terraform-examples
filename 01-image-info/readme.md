@@ -20,5 +20,5 @@ yc compute image get-latest-from-family ubuntu-2004-lts --folder-id standard-ima
 
 ## Get latest image_id for 'ubuntu-2004-lts ' family
 ```
-yc compute image list --folder-id standard-images | grep 'ubuntu-2004-lts ' | cut -d "|" -f 3 | grep $(date +'%Y') | head -n 1
+yc compute image list --folder-id standard-images | grep 'ubuntu-2004-lts ' | cut -d "|" -f 2,3 | grep $(date +'%Y') | head -n 1 | cut -d "|" -f 1
 ```

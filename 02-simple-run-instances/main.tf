@@ -4,13 +4,13 @@ resource "yandex_compute_instance" "vm-1" {
   platform_id = "standard-v3"
 
   resources {
-    cores  = 1
-    memory = 1
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {
     initialize_params {
-      image_id = "ubuntu-20-04-lts-v20220207"
+      image_id = "fd83n3uou8m03iq9gavu"
     }
   }
 
@@ -32,4 +32,5 @@ resource "yandex_vpc_subnet" "subnet-1" {
   name       = "subnet1"
   zone       = "ru-central1-c"
   network_id = yandex_vpc_network.network-1.id
+  v4_cidr_blocks = ["192.168.10.0/24"]
 }
