@@ -2,3 +2,4 @@
 02-simple-run-instances/terraform.tfstate
 02-simple-run-instances/terraform.tfstate.backup
 02-simple-run-instances/.terraform/*
+02-simple-run-instances/private.auto.tfvars
