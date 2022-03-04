@@ -8,8 +8,7 @@ terraform {
 }
 
 provider "yandex" {
-  token     = "<OAuth>"
-  cloud_id  = "<cloud ID>"
-  folder_id = "<folder ID>"
-  zone      = "<default availability zone>"
+  token     = var.yc_token
+  cloud_id  = var.yc_cloud_id
+  folder_id = var.yc_folder_id
 }
