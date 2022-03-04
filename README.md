@@ -13,6 +13,9 @@ yc init
 ## Get token, cloud-id, folder-id
 ```
 yc config list
+```
+Output:
+```
 token: xxx
 cloud-id: xxx
 folder-id: xxxx
