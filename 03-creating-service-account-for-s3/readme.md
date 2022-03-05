@@ -32,7 +32,7 @@ name: s3editor
 ## Assign a role to the s3editor service account using its ID:
 ```
 yc resource-manager folder add-access-binding zzzzzzzzzzzzzzzzzzzz \
-    --role editor \
+    --role storage.admin \
     --subject serviceAccount:xxxxxxxxxxxxxxxxxxxx
 ```
 where zzzzzzzzzzzzzzzzzzzz is folder_id
