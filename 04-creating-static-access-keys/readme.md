@@ -62,5 +62,6 @@ Links:
  - https://cloud.yandex.com/en/docs/iam/operations/sa/create-access-key
  - https://cloud.yandex.ru/docs/cli/cli-ref/managed-services/iam/access-key/create
  - https://cloud.yandex.ru/docs/cli/cli-ref/managed-services/iam/access-key/list
+ - https://github.com/nar3k/yc-public-tasks/tree/master/k8s
 
  
