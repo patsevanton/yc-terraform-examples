@@ -1,6 +1,6 @@
-## Create service account named s3-editor
+## Create service account named s3editor
 ```
-yc iam service-account create --name s3-editor
+yc iam service-account create --name s3editor
 ```
 
 ## Get a list of service accounts
@@ -12,24 +12,24 @@ Output:
 +----------------------+------------+
 |          ID          |    NAME    |
 +----------------------+------------+
-| xxxxxxxxxxxxxxxxxxxx | s3-editor  | # service_account_id of s3-editor
+| xxxxxxxxxxxxxxxxxxxx | s3editor  | # service_account_id of s3editor
 | yyyyyyyyyyyyyyyyyyyy | default-sa | # service_account_id of default-sa
 +----------------------+------------+
 ```
 
 ## Find out the service account ID by its name:
 ```
-yc iam service-account get s3-editor
+yc iam service-account get s3editor
 ```
 Output:
 ```
-id: xxxxxxxxxxxxxxxxxxxx # service_account_id of s3-editor
+id: xxxxxxxxxxxxxxxxxxxx # service_account_id of s3editor
 folder_id: zzzzzzzzzzzzzzzzzzzz
 created_at: "2022-03-05T11:19:58Z"
-name: s3-editor
+name: s3editor
 ```
 
-## Assign a role to the s3-editor service account using its ID:
+## Assign a role to the s3editor service account using its ID:
 ```
 yc resource-manager folder add-access-binding zzzzzzzzzzzzzzzzzzzz \
     --role editor \
@@ -51,9 +51,9 @@ Output:
 +---------+----------------+----------------------+
 ```
 
-## Delete service account named s3-editor
+## Delete service account named s3editor
 ```
-yc iam service-account delete --name s3-editor
+yc iam service-account delete --name s3editor
 ```
 
 Links:
