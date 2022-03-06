@@ -18,3 +18,8 @@ variable "yc_zone" {
   description = "Yandex Cloud compute default zone"
   default = "ru-central1-c"
 }
+
+variable "private_key_path" {
+  description = "Path to ssh private key, which would be used to access workers"
+  default     = "~/.ssh/id_rsa"
+}
