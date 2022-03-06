@@ -1,3 +1,7 @@
+data "yandex_compute_image" "ubuntu-20-04" {
+  family = "ubuntu-2004-lts"
+}
+
 resource "yandex_compute_instance" "vm-1" {
 
   name        = "linux-vm"
@@ -10,7 +14,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd83n3uou8m03iq9gavu"
+      image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
   }
 
