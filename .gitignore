@@ -1,6 +1,6 @@
-02-simple-run-instances/.terraform.lock.hcl
-02-simple-run-instances/terraform.tfstate
-02-simple-run-instances/terraform.tfstate.backup
-02-simple-run-instances/.terraform/*
-02-simple-run-instances/.terraform.tfstate.lock.info
+**/.terraform.lock.hcl
+**/terraform.tfstate
+**/terraform.tfstate.backup
+**/.terraform/*
+**/.terraform.tfstate.lock.info
 **/private.auto.tfvars
