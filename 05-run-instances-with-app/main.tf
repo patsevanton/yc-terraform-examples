@@ -21,9 +21,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   metadata = {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
-    user-data = <<EOF
-sudo DEBIAN_FRONTEND=noninteractive apt-get install nginx ffmpeg tshark -y
-EOF
+    user-data = file("cloud-init.yaml")
   }
 }
 

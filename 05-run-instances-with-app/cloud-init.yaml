@@ -1,0 +1,5 @@
+#cloud-config
+runcmd:
+ - [ apt-get, install, -y, jq ]
+packages:
+ - mc
