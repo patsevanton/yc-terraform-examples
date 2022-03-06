@@ -42,3 +42,16 @@ Default output format [None]:
 ```
 aws --endpoint-url=https://storage.yandexcloud.net s3 mb s3://bucketname
 ```
+
+### Copy a single file from the local system to cloud-based AWS S3 Buckets
+```
+aws --endpoint-url=https://storage.yandexcloud.net s3 cp test.txt s3://bucketname
+```
+
+### List only the Filenames of an S3 Bucket
+```
+aws --endpoint-url=https://storage.yandexcloud.net  s3api list-objects --bucket bucketname --output text --query "Contents[].{Key: Key}"
+```
+
+Links:
+ - 

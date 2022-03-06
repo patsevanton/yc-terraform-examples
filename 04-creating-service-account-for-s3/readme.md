@@ -59,8 +59,7 @@ yc iam service-account delete --name s3editor
 Links:
  - https://cloud.yandex.ru/docs/cli/cli-ref/managed-services/iam/service-account/
  - https://cloud.yandex.com/en/docs/iam/operations/sa/create
- - https://cloud.yandex.com/en/docs/iam/operations/sa/assign-role-for-sa
- - https://cloud.yandex.com/en/docs/iam/operations/sa/assign-role-for-sa
+ - https://cloud.yandex.com/en/docs/iam/operations/sa/assign-role-for-sam
  - https://cloud.yandex.com/en/docs/tutorials/infrastructure-management/terraform-quickstart
  - https://cloud.yandex.com/en/docs/compute/operations/vm-create/create-linux-vm
  - https://cloud.yandex.ru/docs/cli/cli-ref/managed-services/compute/instance/
