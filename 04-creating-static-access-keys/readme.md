@@ -48,7 +48,7 @@ yc iam access-key get ACCESS_KEY_ID
 Output:
 ```
 id: ACCESS_KEY_ID
-service_account_id: xxxxxxxxxxxxxx
+service_account_id: xxxxxxxxxxxx
 created_at: "2022-03-05T11:36:02Z"
 key_id: zzzzzzzzzzzzzzzzzzzz
 ```
