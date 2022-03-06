@@ -45,7 +45,7 @@ yc compute instance list
 
 ### Delete the specified virtual machine (instances)
 ```
-yc compute instance delete <INSTANCE-NAME>|<INSTANCE-ID>
+yc compute instance delete first-instance
 ```
 
 Links:
