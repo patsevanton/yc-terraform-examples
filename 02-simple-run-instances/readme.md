@@ -27,3 +27,11 @@ yc compute instance list
 ```
 yc compute instance delete <INSTANCE-NAME>|<INSTANCE-ID>
 ```
+
+Links:
+ - https://github.com/yandex-cloud/terraform-provider-yandex/issues/130
+ - https://github.com/sport24ru/terraform-yandex-managed-kubernetes/blob/master/main.tf
+ - https://vc.ru/dev/318266-kak-sekonomit-vremya-dengi-i-nervy-na-prostyh-zadachah
+ - https://github.com/yandex-cloud/terraform-provider-yandex/issues/121
+ - https://habr.com/ru/company/rebrainme/blog/538410/
+ 
