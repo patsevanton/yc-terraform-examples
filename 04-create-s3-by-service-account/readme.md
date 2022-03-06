@@ -7,7 +7,7 @@ FOLDER_ID=$(yc config get folder-id)
 yc iam service-account create --name s3admin
 ```
 
-### Get id of service-account
+### Get id of service-account s3admin
 ```
 SA_ID=$(yc iam service-account get --name s3admin --format json | jq .id -r)
 ```
@@ -54,4 +54,11 @@ aws --endpoint-url=https://storage.yandexcloud.net  s3api list-objects --bucket 
 ```
 
 Links:
- - 
+ - https://cloud.yandex.ru/docs/cli/cli-ref/managed-services/iam/service-account/
+ - https://cloud.yandex.com/en/docs/iam/operations/sa/create
+ - https://cloud.yandex.com/en/docs/iam/operations/sa/assign-role-for-sam
+ - https://cloud.yandex.com/en/docs/tutorials/infrastructure-management/terraform-quickstart
+ - https://cloud.yandex.com/en/docs/compute/operations/vm-create/create-linux-vm
+ - https://cloud.yandex.ru/docs/cli/cli-ref/managed-services/compute/instance/
+ - https://cloud.yandex.ru/docs/cli/cli-ref/managed-services/compute/zone/
+ 
