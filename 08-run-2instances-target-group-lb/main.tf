@@ -20,7 +20,7 @@ resource "yandex_compute_instance" "app" {
 
   network_interface {
     subnet_id = yandex_vpc_subnet.subnet-1.id
-    nat       = false
+    nat       = true
   }
 
   metadata = {
@@ -87,4 +87,10 @@ resource "yandex_lb_network_load_balancer" "lb-app" {
 
 output "loadbalancer_ip_address" {
   value = yandex_lb_network_load_balancer.lb-app.listener.*.external_address_spec[0].*.address
+}
+
+# Output values
+output "public-ip-address-for" {
+  description = "Public IP address"
+  value = yandex_compute_instance.app[*].network_interface.0.nat_ip_address
 }
