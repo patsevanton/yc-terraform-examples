@@ -5,7 +5,7 @@ data "yandex_compute_image" "ubuntu-20-04" {
 resource "yandex_compute_instance" "vm" {
   name = "vm-${count.index}"
   platform_id = "standard-v3"
-  count = var.count_instance
+  count = var.instances
 
   resources {
     cores  = 2
@@ -41,21 +41,20 @@ resource "yandex_vpc_subnet" "subnet-1" {
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
-# Output values
-output "public-ip-address-for-vm-1" {
-  description = "Public IP address for vm-1"
-  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
-}
-
-
 resource "yandex_lb_target_group" "loadbalancer" {
   name      = "lb-group"
   folder_id = var.yc_folder_id
 
   target {
-    address = yandex_compute_instance.vm-1.network_interface.0.ip_address
+    address   = yandex_compute_instance.vm-1.network_interface.0.ip_address
     subnet_id = yandex_vpc_subnet.subnet-1.id
   }
+
+  target {
+    address   = yandex_compute_instance.vm-2.network_interface.0.ip_address
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+  }
+
 }
 
 resource "yandex_lb_network_load_balancer" "lb" {
