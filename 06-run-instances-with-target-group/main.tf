@@ -21,6 +21,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   metadata = {
     ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    user-data = file("cloud-init.yaml")
   }
 }
 
@@ -34,6 +35,13 @@ resource "yandex_vpc_subnet" "subnet-1" {
   network_id = yandex_vpc_network.network-1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
+
+# Output values
+output "public-ip-address-for-vm-1" {
+  description = "Public IP address for vm-1"
+  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
+}
+
 
 resource "yandex_lb_target_group" "loadbalancer" {
   name      = "lb-group"
@@ -52,7 +60,7 @@ resource "yandex_lb_network_load_balancer" "lb" {
   listener {
     name        = "listener"
     port        = 80
-    target_port = 9292
+    target_port = 80
 
     external_address_spec {
       ip_version = "ipv4"
@@ -65,7 +73,7 @@ resource "yandex_lb_network_load_balancer" "lb" {
     healthcheck {
       name = "tcp"
       tcp_options {
-        port = 9292
+        port = 80
       }
     }
   }
