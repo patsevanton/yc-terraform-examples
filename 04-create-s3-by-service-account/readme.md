@@ -40,17 +40,27 @@ Default output format [None]:
 
 ### Creating a bucket
 ```
-aws --endpoint-url=https://storage.yandexcloud.net s3 mb s3://bucketname
+aws --endpoint-url=https://storage.yandexcloud.net s3 mb s3://test-bucket-anton-patsev
+```
+
+### Enable versioning S3
+```
+aws --endpoint-url=https://storage.yandexcloud.net s3api put-bucket-versioning --bucket test-bucket-anton-patsev --versioning-configuration MFADelete=Disabled,Status=Enabled
+```
+
+### Check versioning S3
+```
+aws --endpoint-url=https://storage.yandexcloud.net s3api get-bucket-versioning --bucket test-bucket-anton-patsev
 ```
 
 ### Copy a single file from the local system to cloud-based AWS S3 Buckets
 ```
-aws --endpoint-url=https://storage.yandexcloud.net s3 cp test.txt s3://bucketname
+aws --endpoint-url=https://storage.yandexcloud.net s3 cp test.txt s3://test-bucket-anton-patsev
 ```
 
 ### List only the Filenames of an S3 Bucket
 ```
-aws --endpoint-url=https://storage.yandexcloud.net  s3api list-objects --bucket bucketname --output text --query "Contents[].{Key: Key}"
+aws --endpoint-url=https://storage.yandexcloud.net  s3api list-objects --bucket test-bucket-anton-patsev --output text --query "Contents[].{Key: Key}"
 ```
 
 Links:
