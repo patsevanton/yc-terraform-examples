@@ -19,7 +19,7 @@ variable "yc_zone" {
   default = "ru-central1-c"
 }
 
-variable "private_key_path" {
-  description = "Path to ssh private key, which would be used to access workers"
-  default     = "~/.ssh/id_rsa"
+variable "public_key_path" {
+  description = "Path to ssh public key, which would be used to access workers"
+  default     = "~/.ssh/id_rsa.pub"
 }
