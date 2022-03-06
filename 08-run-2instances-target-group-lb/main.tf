@@ -1,7 +1,11 @@
-resource "yandex_compute_instance" "vm-1" {
+data "yandex_compute_image" "ubuntu-20-04" {
+  family = "ubuntu-2004-lts"
+}
 
-  name        = "linux-vm"
+resource "yandex_compute_instance" "vm" {
+  name = "vm-${count.index}"
   platform_id = "standard-v3"
+  count = var.count_instance
 
   resources {
     cores  = 2
@@ -10,7 +14,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd83n3uou8m03iq9gavu"
+      image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
   }
 
@@ -20,9 +24,10 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys = "ubuntu:${file(var.public_key_path)}"
     user-data = file("cloud-init.yaml")
   }
+
 }
 
 resource "yandex_vpc_network" "network-1" {
