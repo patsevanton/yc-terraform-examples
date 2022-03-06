@@ -1,6 +1,6 @@
-## Create service account named s3editor
+## Create service account named s3admin
 ```
-yc iam service-account create --name s3editor
+yc iam service-account create --name s3admin
 ```
 
 ## Get a list of service accounts
@@ -12,24 +12,24 @@ Output:
 +----------------------+------------+
 |          ID          |    NAME    |
 +----------------------+------------+
-| xxxxxxxxxxxxxxxxxxxx | s3editor  | # service_account_id of s3editor
+| xxxxxxxxxxxxxxxxxxxx | s3admin  | # service_account_id of s3admin
 | yyyyyyyyyyyyyyyyyyyy | default-sa | # service_account_id of default-sa
 +----------------------+------------+
 ```
 
 ## Find out the service account ID by its name:
 ```
-yc iam service-account get s3editor
+yc iam service-account get s3admin
 ```
 Output:
 ```
-id: xxxxxxxxxxxxxxxxxxxx # service_account_id of s3editor
+id: xxxxxxxxxxxxxxxxxxxx # service_account_id of s3admin
 folder_id: zzzzzzzzzzzzzzzzzzzz
 created_at: "2022-03-05T11:19:58Z"
-name: s3editor
+name: s3admin
 ```
 
-## Assign a role to the s3editor service account using its ID:
+## Assign a role to the s3admin service account using its ID:
 ```
 yc resource-manager folder add-access-binding zzzzzzzzzzzzzzzzzzzz \
     --role storage.admin \
@@ -51,9 +51,9 @@ Output:
 +---------+----------------+----------------------+
 ```
 
-## Delete service account named s3editor
+## Delete service account named s3admin
 ```
-yc iam service-account delete --name s3editor
+yc iam service-account delete --name s3admin
 ```
 
 Links:

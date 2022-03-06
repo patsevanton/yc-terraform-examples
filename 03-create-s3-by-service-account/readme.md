@@ -4,22 +4,22 @@ FOLDER_ID=$(yc config get folder-id)
 ```
 ### Create service-account
 ```
-yc iam service-account create --name s3editor
+yc iam service-account create --name s3admin
 ```
 
 ### Get id of service-account
 ```
-SA_ID=$(yc iam service-account get --name s3editor --format json | jq .id -r)
+SA_ID=$(yc iam service-account get --name s3admin --format json | jq .id -r)
 ```
 
-### Assign a role to the s3editor service account using its ID:
+### Assign a role to the s3admin service account using its ID:
 ```
 yc resource-manager folder add-access-binding --id $FOLDER_ID --role storage.admin --subject serviceAccount:$SA_ID
 ```
 
-### Create an access key for the s3editor service account:
+### Create an access key for the s3admin service account:
 ```
-yc iam access-key create --service-account-name s3editor
+yc iam access-key create --service-account-name s3admin
 ```
 Output:
 ```
