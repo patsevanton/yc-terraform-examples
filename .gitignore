@@ -1,6 +1,7 @@
-**/.terraform.lock.hcl
-**/terraform.tfstate
-**/terraform.tfstate.backup
+### Terraform files
+**/.*.lock.hcl
+**/*.tfstate
+**/*.tfstate.backup
 **/.terraform/*
-**/.terraform.tfstate.lock.info
-**/private.auto.tfvars
+**/.*.tfstate.lock.info
+**/*.tfvars
