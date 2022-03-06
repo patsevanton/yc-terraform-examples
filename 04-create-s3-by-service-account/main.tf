@@ -1,25 +1,37 @@
-## Create SA
-resource "yandex_iam_service_account" "sa" {
+## Create SA sa-storage-admin
+resource "yandex_iam_service_account" "sa-storage-admin" {
   folder_id = var.yc_folder_id
-  name      = "terraformsa"
+  name      = "sa-storage-admin"
 }
 
 ## Grant permissions 
 resource "yandex_resourcemanager_folder_iam_member" "sa-storage-admin" {
   folder_id = var.yc_folder_id
   role      = "storage.admin"
-  member    = "serviceAccount:${yandex_iam_service_account.sa.id}"
+  member    = "serviceAccount:${yandex_iam_service_account.sa-storage-admin.id}"
 }
 
 ## Create Static Access Keys
-resource "yandex_iam_service_account_static_access_key" "sa-static-key" {
-  service_account_id = yandex_iam_service_account.sa.id
+resource "yandex_iam_service_account_static_access_key" "sa-storage-admin-static-key" {
+  service_account_id = yandex_iam_service_account.sa-storage-admin.id
   description        = "static access key for object storage"
 }
 
-// Use keys to create bucket
+## Use keys to create bucket
 resource "yandex_storage_bucket" "test" {
-  access_key = yandex_iam_service_account_static_access_key.sa-static-key.access_key
-  secret_key = yandex_iam_service_account_static_access_key.sa-static-key.secret_key
+  access_key = yandex_iam_service_account_static_access_key.sa-storage-admin-static-key.access_key
+  secret_key = yandex_iam_service_account_static_access_key.sa-storage-admin-static-key.secret_key
   bucket     = "test-test-foobar"
 }
+
+## Output values
+output "access_key" {
+  description = "access_key sa-storage-admin"
+  value = yandex_storage_bucket.access_key
+}
+
+output "secret_key" {
+  description = "secret_key sa-storage-admin"
+  value = yandex_storage_bucket.secret_key
+}
+
