@@ -35,7 +35,7 @@ resource "yandex_compute_instance" "vm-1" {
     ]
     connection {
       type = "ssh"
-      user = var.user
+      user = "ubuntu"
       private_key = file(var.private_key_path)
       host = self.network_interface[0].nat_ip_address
     }
