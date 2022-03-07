@@ -33,8 +33,10 @@ yc compute instance create \
     --service-account-name computeadmin \
     --name first-instance \
     --zone ru-central1-b \
+    --cores=2 \
+    --memory=2 \
     --network-interface subnet-name=apatsev-ru-central1-b,nat-ip-version=ipv4 \
-    --create-boot-disk image-folder-id=standard-images,image-family=centos-7 \
+    --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
     --ssh-key ~/.ssh/id_rsa.pub
 ```
 
