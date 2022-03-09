@@ -14,6 +14,8 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
+      size     = 10
+      type     = "network-hdd"
       image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
   }
