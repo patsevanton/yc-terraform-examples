@@ -27,7 +27,7 @@ yc vpc subnet list
 yc compute zone list
 ```
 
-### Create virtual machine (instances). Default CPU 2, MEM 2GB, DISK 5GB
+### Create virtual machine (instances).
 ```
 yc compute instance create \
     --service-account-name computeadmin \

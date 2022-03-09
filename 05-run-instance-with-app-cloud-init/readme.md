@@ -35,8 +35,6 @@ yc compute instance create \
     --name first-instance \
     --hostname first-instance \
     --zone ru-central1-b \
-    --cores=2 \
-    --memory=2 \
     --metadata-from-file user-data=cloud-init-with-ssh.yaml \
     --network-interface subnet-name=apatsev-ru-central1-b,nat-ip-version=ipv4 \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts
@@ -49,8 +47,6 @@ yc compute instance create \
     --name first-instance \
     --hostname first-instance \
     --zone ru-central1-b \
-    --cores=2 \
-    --memory=2 \
     --network-interface subnet-name=apatsev-ru-central1-b,nat-ip-version=ipv4 \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
     --ssh-key ~/.ssh/id_rsa.pub

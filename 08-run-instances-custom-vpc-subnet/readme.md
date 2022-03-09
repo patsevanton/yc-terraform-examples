@@ -53,8 +53,6 @@ yc compute instance create \
     --name instance-custom-vpc \
     --hostname instance-custom-vpc \
     --zone ru-central1-b \
-    --cores=2 \
-    --memory=2 \
     --network-interface subnet-name=custom-subnet,nat-ip-version=ipv4 \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
     --ssh-key ~/.ssh/id_rsa.pub
