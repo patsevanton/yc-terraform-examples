@@ -19,7 +19,7 @@ yc compute instance create \
     --ssh-key ~/.ssh/id_rsa.pub
 ```
 
-### Create virtual machine (instances). Default CPU 4, MEM 4GB, DISK 10GB
+### Create virtual machine (instances). CPU 4, MEM 4GB, DISK 10GB
 ```
 yc compute instance create \
     --name first-instance \
