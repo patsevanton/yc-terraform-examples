@@ -47,6 +47,7 @@ yc compute instance create \
 yc compute instance create \
     --service-account-name computeadmin \
     --name first-instance \
+    --hostname first-instance \
     --zone ru-central1-b \
     --cores=2 \
     --memory=2 \
