@@ -1,3 +1,7 @@
+data "yandex_compute_image" "ubuntu-20-04" {
+  family = "ubuntu-2004-lts"
+}
+
 ## Create SA sa-compute-admin
 resource "yandex_iam_service_account" "sa-compute-admin" {
   folder_id = var.yc_folder_id
@@ -24,7 +28,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   boot_disk {
     initialize_params {
-      image_id = "fd83n3uou8m03iq9gavu"
+      image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
   }
 
