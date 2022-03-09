@@ -25,8 +25,8 @@ yc compute instance create \
     --name first-instance \
     --hostname first-instance \
     --zone ru-central1-b \
-    --cores=2 \
-    --memory=2 \
+    --cores=4 \
+    --memory=4 \
     --network-interface subnet-name=apatsev-ru-central1-b,nat-ip-version=ipv4 \
     --create-boot-disk size=10GB,image-folder-id=standard-images,image-family=ubuntu-2004-lts \
     --ssh-key ~/.ssh/id_rsa.pub
