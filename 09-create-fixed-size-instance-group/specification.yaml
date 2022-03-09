@@ -11,7 +11,7 @@ instance_template:
         disk_spec:
             image_id: fd83n3uou8m03iq9gavu
             type_id: network-hdd
-            size: 32g
+            size: 5g
     network_interface_specs:
         - network_id: enph7uka9uncogassetb
           primary_v4_address_spec: {}
@@ -20,7 +20,7 @@ deploy_policy:
     max_expansion: 0
 scale_policy:
     fixed_scale:
-        size: 3
+        size: 2
 allocation_policy:
     zones:
         - zone_id: ru-central1-c
