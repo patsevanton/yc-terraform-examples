@@ -19,6 +19,7 @@ resource "yandex_compute_instance_group" "ig-1" {
   name                = "fixed-ig"
   folder_id           = var.yc_folder_id
   service_account_id  = yandex_iam_service_account.sa-editor.id
+  depends_on          = [yandex_resourcemanager_folder_iam_member.sa-editor-permissions]
   instance_template {
     platform_id = "standard-v3"
     resources {
