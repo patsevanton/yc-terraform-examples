@@ -2,43 +2,60 @@ data "yandex_compute_image" "ubuntu-20-04" {
   family = "ubuntu-2004-lts"
 }
 
-## Create SA sa-compute-admin
-resource "yandex_iam_service_account" "sa-compute-admin" {
+## Create SA sa-editor
+resource "yandex_iam_service_account" "sa-editor" {
   folder_id = var.yc_folder_id
-  name      = "sa-compute-admin"
+  name      = "sa-editor"
 }
 
-## Grant permissions sa-compute-admin
-resource "yandex_resourcemanager_folder_iam_member" "sa-compute-admin-permissions" {
+## Grant permissions sa-editor
+resource "yandex_resourcemanager_folder_iam_member" "sa-editor-permissions" {
   folder_id = var.yc_folder_id
-  role      = "compute.admin"
-  member    = "serviceAccount:${yandex_iam_service_account.sa-compute-admin.id}"
+  role      = "editor"
+  member    = "serviceAccount:${yandex_iam_service_account.sa-editor.id}"
 }
 
-resource "yandex_compute_instance" "vm-1" {
+resource "yandex_compute_instance_group" "ig-1" {
+  name                = "fixed-ig"
+  folder_id           = var.yc_folder_id
+  service_account_id  = yandex_iam_service_account.sa-editor.id
+  instance_template {
+    platform_id = "standard-v3"
+    resources {
+      cores  = 2
+      memory = 2
+    }
 
-  name        = "linux-vm"
-  platform_id = "standard-v3"
-  service_account_id  = yandex_iam_service_account.sa-compute-admin.id
+    boot_disk {
+      mode = "READ_WRITE"
+      initialize_params {
+        image_id = data.yandex_compute_image.ubuntu-20-04.id
+      }
+    }
 
-  resources {
-    cores  = 2
-    memory = 2
-  }
+    network_interface {
+      network_id = yandex_vpc_network.network-1.id
+      subnet_ids = [yandex_vpc_subnet.subnet-1.id]
+    }
 
-  boot_disk {
-    initialize_params {
-      image_id = data.yandex_compute_image.ubuntu-20-04.id
+    metadata = {
+      ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
     }
   }
 
-  network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
-    nat       = true
+  scale_policy {
+    fixed_scale {
+      size = 2
+    }
   }
 
-  metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+  allocation_policy {
+    zones = ["ru-central1-c"]
+  }
+
+  deploy_policy {
+    max_unavailable = 1
+    max_expansion = 0
   }
 }
 

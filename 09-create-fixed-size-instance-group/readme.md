@@ -41,3 +41,5 @@ yc compute instance-group create --file specification.yaml
 Links:
  - https://postgrespro.ru/products/postgrespro/yandexcloud/enterprise
  - https://cloud.yandex.com/en/docs/compute/operations/instance-groups/create-fixed-group
+ - https://git.cloud-team.ru/lections/kubernetes_setup/blob/master/terraform/k8s-cluster.tf
+ 
