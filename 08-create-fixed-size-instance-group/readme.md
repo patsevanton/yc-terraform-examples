@@ -33,42 +33,11 @@ yc vpc network list
 yc compute zone list
 ```
 
-### Create a subnet in the specified network
+### Create an instance group in the default folder
 ```
-yc vpc subnet create \
---name custom-subnet \
---range 192.168.0.0/24 \
---network-name custom-network
-```
-
-### Get subnet list
-```
-yc vpc subnet list
-```
-
-### Create virtual machine (instances)
-```
-yc compute instance create \
-    --service-account-name computeadmin \
-    --name instance-custom-vpc \
-    --hostname instance-custom-vpc \
-    --zone ru-central1-b \
-    --cores=2 \
-    --memory=2 \
-    --network-interface subnet-name=custom-subnet,nat-ip-version=ipv4 \
-    --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
-    --ssh-key ~/.ssh/id_rsa.pub
-```
-
-### List virtual machine (instances)
-```
-yc compute instance list
-```
-
-### Delete the specified virtual machine (instances)
-```
-yc compute instance delete first-instance
+yc compute instance-group create --file specification.yaml
 ```
 
 Links:
  - https://postgrespro.ru/products/postgrespro/yandexcloud/enterprise
+ - https://cloud.yandex.com/en/docs/compute/operations/instance-groups/create-fixed-group
