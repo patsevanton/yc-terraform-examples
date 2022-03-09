@@ -69,3 +69,5 @@ Links:
  - https://github.com/Otus-DevOps-2020-08/Tyatyushkin_infra
  - https://githubmemory.com/repo/barmank32/barmank32_infra
  - https://t.me/terraform_ru/27343
+ - https://github.com/yandex-cloud/usecases
+ 
