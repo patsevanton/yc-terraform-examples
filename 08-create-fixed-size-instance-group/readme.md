@@ -17,9 +17,15 @@ SA_ID=$(yc iam service-account get --name computeadmin --format json | jq .id -r
 ```
 yc resource-manager folder add-access-binding --id $FOLDER_ID --role compute.admin --subject serviceAccount:$SA_ID
 ```
-### Get subnet list
+
+### Create a network
 ```
-yc vpc subnet list
+yc vpc network create --name custom-network
+```
+
+### Get network list
+```
+yc vpc network list
 ```
 
 ### Show availability zones
@@ -27,16 +33,29 @@ yc vpc subnet list
 yc compute zone list
 ```
 
+### Create a subnet in the specified network
+```
+yc vpc subnet create \
+--name custom-subnet \
+--range 192.168.0.0/24 \
+--network-name custom-network
+```
+
+### Get subnet list
+```
+yc vpc subnet list
+```
+
 ### Create virtual machine (instances)
 ```
 yc compute instance create \
     --service-account-name computeadmin \
-    --name first-instance \
-    --hostname first-instance \
+    --name instance-custom-vpc \
+    --hostname instance-custom-vpc \
     --zone ru-central1-b \
     --cores=2 \
     --memory=2 \
-    --network-interface subnet-name=apatsev-ru-central1-b,nat-ip-version=ipv4 \
+    --network-interface subnet-name=custom-subnet,nat-ip-version=ipv4 \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
     --ssh-key ~/.ssh/id_rsa.pub
 ```
@@ -52,7 +71,4 @@ yc compute instance delete first-instance
 ```
 
 Links:
- - https://github.com/AlBichutsky/wiki/wiki/Terraform
- - https://github.com/Otus-DevOps-2020-08/Tyatyushkin_infra
- - https://githubmemory.com/repo/barmank32/barmank32_infra
- - https://t.me/terraform_ru/27343
+ - https://postgrespro.ru/products/postgrespro/yandexcloud/enterprise
