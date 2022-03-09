@@ -8,7 +8,7 @@ yc vpc subnet list
 yc compute zone list
 ```
 
-### Create virtual machine (instances)
+### Create virtual machine (instances). Default CPU 2, MEM 2GB, DISK 5GB
 ```
 yc compute instance create \
     --name first-instance \
