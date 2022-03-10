@@ -46,7 +46,6 @@ output "public-ip-address-for-vm-1" {
   value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
 }
 
-
 resource "yandex_lb_target_group" "loadbalancer" {
   name      = "lb-group"
   folder_id = var.yc_folder_id

@@ -48,12 +48,13 @@ yc load-balancer network-load-balancer create \
 yc compute instance list
 ```
 
-### Create a target group and add the appropriate VM to it as a target by specifying the subnet-id and address of the VM in the --target flag
+### Create a target group and add the appropriate VM.
 ```
 yc load-balancer target-group create \
   --region-id ru-central1 \
   --name test-tg-1 \
-  --target subnet-id=e2l3p2t1krju8faen7ob,address=10.129.0.32
+  --target subnet-id=e2l3p2t1krju8faen7ob,address=10.129.0.32 \
+  --target subnet-id=e2l3p2t1krju8faen7ob,address=10.129.0.7
 ```
 
 ### Delete the specified target-group
