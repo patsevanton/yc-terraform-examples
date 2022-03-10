@@ -1,0 +1,6 @@
+#cloud-config
+runcmd:
+ - [ apt-get, install, -y, jq ]
+ - [ touch, /test.txt ]
+packages:
+ - nginx
