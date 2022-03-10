@@ -44,9 +44,15 @@ yc load-balancer target-group create \
   --target subnet-id=e2l3p2t1krju8faen7ob,address=10.129.0.7
 ```
 
-### Delete the specified virtual machine (instances)
+### Delete the specified target-group
 ```
 yc load-balancer target-group delete test-tg-1
+```
+
+### Delete the specified virtual machine (instances)
+```
+yc compute instance delete first-instance
+yc compute instance delete second-instance
 ```
 
 Links:
