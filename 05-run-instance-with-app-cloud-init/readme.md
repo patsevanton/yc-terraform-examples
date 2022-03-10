@@ -28,7 +28,7 @@ yc vpc subnet list
 yc compute zone list
 ```
 
-### Create virtual machine (instances). SSH created by cloud-init.
+### Create virtual machine (instances). Cloud-init use for create user with SSH key and run script, install packages.
 ```
 yc compute instance create \
     --service-account-name computeadmin \
