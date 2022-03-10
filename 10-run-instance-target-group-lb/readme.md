@@ -19,7 +19,6 @@ yc compute instance create \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts
 ```
 
-
 ### List virtual machine (instances)
 ```
 yc compute instance list

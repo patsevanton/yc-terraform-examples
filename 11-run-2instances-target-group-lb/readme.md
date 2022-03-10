@@ -1,22 +1,3 @@
-### Get FOLDER_ID
-```
-FOLDER_ID=$(yc config get folder-id)
-```
-
-### Create service-account
-```
-yc iam service-account create --name computeadmin
-```
-
-### Get id of service-account
-```
-SA_ID=$(yc iam service-account get --name computeadmin --format json | jq .id -r)
-```
-
-### Assign a role to the computeadmin service account using its ID:
-```
-yc resource-manager folder add-access-binding --id $FOLDER_ID --role compute.admin --subject serviceAccount:$SA_ID
-```
 ### Get subnet list
 ```
 yc vpc subnet list
@@ -30,7 +11,17 @@ yc compute zone list
 ### Create virtual machine (instances)
 ```
 yc compute instance create \
-    --service-account-name computeadmin \
+    --name first-instance \
+    --hostname first-instance \
+    --zone ru-central1-b \
+    --network-interface subnet-name=apatsev-ru-central1-b,nat-ip-version=ipv4 \
+    --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
+    --ssh-key ~/.ssh/id_rsa.pub
+```
+
+### Create virtual machine (instances)
+```
+yc compute instance create \
     --name first-instance \
     --hostname first-instance \
     --zone ru-central1-b \
@@ -52,9 +43,22 @@ yc load-balancer network-load-balancer create \
 --listener name=test-listener,port=80,subnet-id=apatsev-ru-central1-c
 ```
 
-### List target groups
+### List virtual machine (instances)
 ```
-yc load-balancer target-group list 
+yc compute instance list
+```
+
+### Create a target group and add the appropriate VM to it as a target by specifying the subnet-id and address of the VM in the --target flag
+```
+yc load-balancer target-group create \
+  --region-id ru-central1 \
+  --name test-tg-1 \
+  --target subnet-id=e2l3p2t1krju8faen7ob,address=10.129.0.32
+```
+
+### Delete the specified target-group
+```
+yc load-balancer target-group delete test-tg-1
 ```
 
 ### Delete the specified virtual machine (instances)
