@@ -28,7 +28,6 @@ resource "yandex_compute_instance_group" "ig-1" {
     }
 
     boot_disk {
-      mode = "READ_WRITE"
       initialize_params {
         image_id = data.yandex_compute_image.ubuntu-20-04.id
       }
