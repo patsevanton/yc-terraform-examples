@@ -59,36 +59,6 @@ resource "yandex_lb_target_group" "app_group" {
 
 }
 
-resource "yandex_lb_network_load_balancer" "lb-app" {
-  name = "loadbalancer"
-  type = "external"
-
-  listener {
-    name        = "listener"
-    port        = 80
-    target_port = 80
-
-    external_address_spec {
-      ip_version = "ipv4"
-    }
-  }
-
-  attached_target_group {
-    target_group_id = yandex_lb_target_group.app_group.id
-    healthcheck {
-      name = "http"
-      http_options {
-        port = 80
-        path = "/"
-      }
-    }
-  }
-}
-
-output "loadbalancer_ip_address" {
-  value = yandex_lb_network_load_balancer.lb-app.listener.*.external_address_spec[0].*.address
-}
-
 # Output values
 output "public-ip-address-for" {
   description = "Public IP address"
