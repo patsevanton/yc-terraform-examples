@@ -22,8 +22,8 @@ yc compute instance create \
 ### Create virtual machine (instances)
 ```
 yc compute instance create \
-    --name first-instance \
-    --hostname first-instance \
+    --name second-instance \
+    --hostname second-instance \
     --zone ru-central1-b \
     --network-interface subnet-name=apatsev-ru-central1-b,nat-ip-version=ipv4 \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
@@ -65,6 +65,7 @@ yc load-balancer target-group delete test-tg-1
 ### Delete the specified virtual machine (instances)
 ```
 yc compute instance delete first-instance
+yc compute instance delete second-instance
 ```
 
 Links:

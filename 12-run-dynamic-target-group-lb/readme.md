@@ -22,8 +22,8 @@ yc compute instance create \
 ### Create virtual machine (instances)
 ```
 yc compute instance create \
-    --name first-instance \
-    --hostname first-instance \
+    --name second-instance \
+    --hostname second-instance \
     --zone ru-central1-b \
     --network-interface subnet-name=apatsev-ru-central1-b,nat-ip-version=ipv4 \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
@@ -53,7 +53,8 @@ yc compute instance list
 yc load-balancer target-group create \
   --region-id ru-central1 \
   --name test-tg-1 \
-  --target subnet-id=e2l3p2t1krju8faen7ob,address=10.129.0.32
+  --target subnet-id=e2l3p2t1krju8faen7ob,address=10.129.0.32 \
+  --target subnet-id=e2l3p2t1krju8faen7ob,address=10.129.0.7
 ```
 
 ### Delete the specified target-group
@@ -64,6 +65,7 @@ yc load-balancer target-group delete test-tg-1
 ### Delete the specified virtual machine (instances)
 ```
 yc compute instance delete first-instance
+yc compute instance delete second-instance
 ```
 
 Links:
