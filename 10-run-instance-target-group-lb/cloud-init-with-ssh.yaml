@@ -1,0 +1,14 @@
+#cloud-config
+users:
+  - name: ubuntu
+    groups: sudo
+    shell: /bin/bash
+    sudo: ['ALL=(ALL) NOPASSWD:ALL']
+    ssh-authorized-keys:
+      - ssh-rsa AAAAB3Nza......OjbSMRX user@example.com
+      - ssh-rsa AAAAB3Nza......Pu00jRN user@desktop
+runcmd:
+ - [ apt-get, install, -y, jq ]
+ - [ touch, /test.txt ]
+packages:
+ - nginx
