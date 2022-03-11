@@ -1,13 +1,12 @@
 <powershell>
 net user Administrator "${windows_password}"
-Write-Host "Enable HTTPS in WinRM"
-$WinRmHttps = "@{Hostname=`"$RemoteHostName`"; CertificateThumbprint=`"$Thumbprint`"}"
-winrm create winrm/config/Listener?Address=*+Transport=HTTPS $WinRmHttps
+$chocoInstallScriptUrl  = 'https://raw.githubusercontent.com/ansible/ansible/devel/examples/scripts/ConfigureRemotingForAnsible.ps1'
+$chocoInstallScript     = Join-Path $env:Temp 'SetupComplete.ps1'
 
-Write-Host "Set Basic Auth in WinRM"
-$WinRmBasic = "@{Basic=`"true`"}"
-winrm set winrm/config/service/Auth $WinRmBasicWrite-Host "Open Firewall Ports"
-netsh advfirewall firewall add ruleenter code here name="Windows Remote Management (HTTP-In)" dir=in action=allow protocol=TCP localport=5985
+Set-ExecutionPolicy Unrestricted
 
-netsh advfirewall firewall add rule name="Windows Remote Management (HTTPS-In)" dir=in action=allow protocol=TCP localport=5986
+$downloader = New-Object System.Net.WebClient
+$downloader.DownloadFile($chocoInstallScriptUrl, $chocoInstallScript)
+
+& $chocoInstallScript
 </powershell>
