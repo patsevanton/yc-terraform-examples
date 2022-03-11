@@ -38,7 +38,7 @@ resource "yandex_compute_instance" "active_directory" {
   }
 
   depends_on = [
-    data.template_file.userdata_win.rendered
+    data.template_file.userdata_win
   ]
 
 }
