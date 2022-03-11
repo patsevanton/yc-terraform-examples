@@ -37,10 +37,6 @@ resource "yandex_compute_instance" "active_directory" {
     serial-port-enable = 1
   }
 
-  depends_on = [
-    data.template_file.userdata_win
-  ]
-
 }
 
 resource "yandex_vpc_network" "network-1" {
