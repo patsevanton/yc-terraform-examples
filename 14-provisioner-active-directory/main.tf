@@ -2,7 +2,7 @@ data "yandex_compute_image" "windows-2022-dc-gvlk" {
   family = "windows-2022-dc-gvlk"
 }
 
-resource "yandex_compute_instance" "vm-1" {
+resource "yandex_compute_instance" "active_directory" {
 
   name        = "active-directory"
   platform_id = "standard-v3"
@@ -42,7 +42,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
 }
 
 # Output values
-output "public-ip-address-for-vm-1" {
-  description = "Public IP address for vm-1"
-  value = yandex_compute_instance.vm-1.network_interface.0.nat_ip_address
+output "public_ip_address_for_active_directory" {
+  description = "Public IP address for active directory"
+  value = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
 }
