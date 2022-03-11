@@ -3,9 +3,9 @@ data "yandex_compute_image" "windows-2022-dc-gvlk" {
 }
 
 data "template_file" "userdata_win" {
-  template = "${file("user_data.tpl")}"
+  template = file("user_data.tmpl")
   vars = {
-    windows_password   = "${var.windows_password}"
+    windows_password   = var.windows_password
   }
 }
 
