@@ -1,3 +1,13 @@
 <powershell>
 net user Administrator "${windows_password}"
+Write-Host "Enable HTTPS in WinRM"
+$WinRmHttps = "@{Hostname=`"$RemoteHostName`"; CertificateThumbprint=`"$Thumbprint`"}"
+winrm create winrm/config/Listener?Address=*+Transport=HTTPS $WinRmHttps
+
+Write-Host "Set Basic Auth in WinRM"
+$WinRmBasic = "@{Basic=`"true`"}"
+winrm set winrm/config/service/Auth $WinRmBasicWrite-Host "Open Firewall Ports"
+netsh advfirewall firewall add ruleenter code here name="Windows Remote Management (HTTP-In)" dir=in action=allow protocol=TCP localport=5985
+
+netsh advfirewall firewall add rule name="Windows Remote Management (HTTPS-In)" dir=in action=allow protocol=TCP localport=5986
 </powershell>

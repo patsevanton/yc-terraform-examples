@@ -37,6 +37,24 @@ resource "yandex_compute_instance" "active_directory" {
     serial-port-enable = 1
   }
 
+  provisioner "remote-exec" {
+    connection {
+      type      = "winrm"
+      user      = "Administrator"
+      host      = self.network_interface.0.nat_ip_address
+      password  = var.windows_password
+      https     = true
+      port      = 5986
+      insecure  = true
+      timeout   = "15m"
+    }
+
+    inline = [
+      "echo hello",
+      "powershell.exe Write-Host hello",
+    ]
+  }
+
 }
 
 resource "yandex_vpc_network" "network-1" {
