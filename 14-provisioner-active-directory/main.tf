@@ -15,7 +15,7 @@ resource "yandex_compute_instance" "vm-1" {
   boot_disk {
     initialize_params {
       size     = 60
-      type     = "network-sdd"
+      type     = "network-ssd"
       image_id = data.yandex_compute_image.windows-2022-dc-gvlk.id
     }
   }
