@@ -43,9 +43,8 @@ yc compute instance delete first-instance
 ```
 
 Links:
- - https://github.com/yandex-cloud/terraform-provider-yandex/issues/130
- - https://github.com/sport24ru/terraform-yandex-managed-kubernetes/blob/master/main.tf
- - https://vc.ru/dev/318266-kak-sekonomit-vremya-dengi-i-nervy-na-prostyh-zadachah
- - https://github.com/yandex-cloud/terraform-provider-yandex/issues/121
- - https://habr.com/ru/company/rebrainme/blog/538410/
+ - https://gist.github.com/jugatsu/e9e09db6c7cba6900fce2d275dba515f
+ - https://github.com/justin-p/ansible-role-pdc/issues/4
+ - https://nikolaymatrosov.medium.com/rdp-%D0%BD%D0%B0-ubuntu-%D0%B2-yandex-cloud-c9d7870a47cc
+ - https://yetiops.net/posts/proxmox-terraform-cloudinit-windows/
  

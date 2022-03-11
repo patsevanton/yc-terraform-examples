@@ -18,3 +18,8 @@ variable "yc_zone" {
   description = "Yandex Cloud compute default zone"
   default = "ru-central1-c"
 }
+
+variable "windows_password" {
+    type = string
+    description = "Password for Windows"
+}

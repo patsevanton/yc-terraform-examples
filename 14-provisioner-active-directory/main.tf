@@ -2,6 +2,13 @@ data "yandex_compute_image" "windows-2022-dc-gvlk" {
   family = "windows-2022-dc-gvlk"
 }
 
+data "template_file" "userdata_win" {
+  template = "${file("user_data.tpl")}"
+  vars = {
+    windows_password   = "${var.windows_password}"
+  }
+}
+
 resource "yandex_compute_instance" "active_directory" {
 
   name        = "active-directory"
@@ -9,7 +16,7 @@ resource "yandex_compute_instance" "active_directory" {
 
   resources {
     cores  = 2
-    memory = 4
+    memory = 6
   }
 
   boot_disk {
@@ -26,8 +33,14 @@ resource "yandex_compute_instance" "active_directory" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file("~/.ssh/id_rsa.pub")}"
+    user-data = data.template_file.userdata_win.rendered
+    serial-port-enable = 1
   }
+
+  depends_on = [
+    data.template_file.userdata_win.rendered
+  ]
+
 }
 
 resource "yandex_vpc_network" "network-1" {
