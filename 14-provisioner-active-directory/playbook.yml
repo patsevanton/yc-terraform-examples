@@ -1,0 +1,5 @@
+- hosts: dc2022
+  roles:
+    - role: justin_p.posh5
+    - role: justin_p.wincom
+    - role: justin_p.pdc
