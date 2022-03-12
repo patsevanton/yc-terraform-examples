@@ -23,3 +23,8 @@ variable "windows_password" {
     type = string
     description = "Password for Windows"
 }
+
+variable "hostname" {
+    type = string
+    description = "hostname"
+}

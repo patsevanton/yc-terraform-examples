@@ -1,5 +1,5 @@
 [windows]
-dc2022 ansible_host="${public_ip_address_for_active_directory}"
+"${hostname}" ansible_host="${public_ip_address_for_active_directory}"
 
 [windows:vars]
 ansible_port=5986
@@ -8,3 +8,6 @@ ansible_winrm_transport=basic
 ansible_user=Administrator
 ansible_winrm_server_cert_validation=ignore
 ansible_password="${windows_password}"
+pdc_administrator_password: "${windows_password}"
+pdc_domain: ad.domain.test
+pdc_domain_path: dc=ad,dc=domain,dc=test

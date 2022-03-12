@@ -13,6 +13,7 @@ resource "yandex_compute_instance" "active_directory" {
 
   name        = "active-directory"
   platform_id = "standard-v3"
+  hostname    = var.hostname
 
   resources {
     cores  = 2
@@ -74,16 +75,32 @@ output "public_ip_address_for_active_directory" {
   value = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
 }
 
-resource "local_file" "kubeconfig" {
-  content  = "${data.template_file.inventory.rendered}"
-  filename = "inventory"
+resource "local_file" "host_ini" {
+  content  = "${data.template_file.host_ini.rendered}"
+  filename = "host.ini"
 }
 
-data "template_file" "inventory" {
-  template = "${file("inventory.tmpl")}"
+data "template_file" "host_ini" {
+  template = "${file("host_ini.tmpl")}"
   vars = {
     windows_password   = var.windows_password
+    hostname           = var.hostname
     public_ip_address_for_active_directory = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
   }
 }
+
+resource "local_file" "inventory_yml" {
+  content  = "${data.template_file.inventory_yml.rendered}"
+  filename = "inventory.yml"
+}
+
+data "template_file" "inventory_yml" {
+  template = "${file("inventory_yml.tmpl")}"
+  vars = {
+    windows_password   = var.windows_password
+    hostname           = var.hostname
+    public_ip_address_for_active_directory = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
+  }
+}
+
 

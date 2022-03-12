@@ -6,3 +6,5 @@
 **/.*.tfstate.lock.info
 **/*.tfvars
 **/inventory
+*/host.ini
+*/inventory.yml

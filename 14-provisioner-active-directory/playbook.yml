@@ -1,4 +1,4 @@
-- hosts: dc2022
+- hosts: primarydomaincontroller
   roles:
     - role: justin_p.posh5
     - role: justin_p.wincom
