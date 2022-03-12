@@ -70,7 +70,7 @@ resource "yandex_vpc_subnet" "subnet-1" {
 }
 
 # Output values
-output "public_ip_address_for_active_directory" {
+output "public_ip" {
   description = "Public IP address for active directory"
   value = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
 }
@@ -85,7 +85,9 @@ data "template_file" "host_ini" {
   vars = {
     windows_password   = var.windows_password
     hostname           = var.hostname
-    public_ip_address_for_active_directory = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
+    pdc_domain         = var.pdc_domain
+    pdc_domain_path    = var.pdc_domain_path
+    public_ip          = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
   }
 }
 
@@ -99,7 +101,9 @@ data "template_file" "inventory_yml" {
   vars = {
     windows_password   = var.windows_password
     hostname           = var.hostname
-    public_ip_address_for_active_directory = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
+    pdc_domain         = var.pdc_domain
+    pdc_domain_path    = var.pdc_domain_path
+    public_ip          = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
   }
 }
 

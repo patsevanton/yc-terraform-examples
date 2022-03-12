@@ -28,3 +28,13 @@ variable "hostname" {
     type = string
     description = "hostname"
 }
+
+variable "pdc_domain" {
+    type = string
+    description = "pdc_domain"
+}
+
+variable "pdc_domain_path" {
+    type = string
+    description = "pdc_domain_path"
+}

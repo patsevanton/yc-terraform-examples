@@ -3,7 +3,7 @@ all:
     primarydomaincontroller:
       hosts:
         "${hostname}":
-          ansible_host: "${public_ip_address_for_active_directory}"
+          ansible_host: "${public_ip}"
   vars:
     ansible_user: Administrator
     ansible_password: "${windows_password}"
@@ -12,5 +12,5 @@ all:
     ansible_winrm_transport: basic
     ansible_winrm_server_cert_validation: ignore
     pdc_administrator_password: "${windows_password}"
-    pdc_domain: ad.domain.test
-    pdc_domain_path: dc=ad,dc=domain,dc=test
+    pdc_domain: "${pdc_domain}"
+    pdc_domain_path: "${pdc_domain_path}"
