@@ -1,0 +1,10 @@
+[windows]
+active-directory ansible_host="${public_ip_address_for_active_directory}"
+
+[windows:vars]
+ansible_port=5986
+ansible_connection=winrm
+ansible_winrm_transport=basic
+ansible_user=Administrator
+ansible_winrm_server_cert_validation=ignore
+ansible_password="${windows_password}"

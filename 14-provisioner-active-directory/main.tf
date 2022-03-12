@@ -73,3 +73,17 @@ output "public_ip_address_for_active_directory" {
   description = "Public IP address for active directory"
   value = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
 }
+
+resource "local_file" "kubeconfig" {
+  content  = "${data.template_file.inventory.rendered}"
+  filename = "inventory"
+}
+
+data "template_file" "inventory" {
+  template = "${file("inventory.tmpl")}"
+  vars = {
+    windows_password   = var.windows_password
+    public_ip_address_for_active_directory = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
+  }
+}
+
