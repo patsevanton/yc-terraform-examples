@@ -1,6 +1,4 @@
 - hosts: gitlab
-  # environment:
-  #   GITLAB_ROOT_PASSWORD: source_me_from_secret_manager
   become: yes
   pre_tasks:
     - name: Update apt cache.
@@ -9,3 +7,10 @@
       changed_when: false
   roles:
     - role: geerlingguy.gitlab
+  post_tasks:
+    - name: Display /etc/gitlab/initial_root_password contents
+      command: cat /etc/gitlab/initial_root_password
+      register: initial_root_password
+    - name: Print to console initial_root_password
+      debug:
+        msg: "{{initial_root_password.stdout_lines}}"
