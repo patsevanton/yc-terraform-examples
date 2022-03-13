@@ -7,9 +7,6 @@
       changed_when: false
   roles:
     - role: alvistack.gitlab_ce
-      vars:
-        gitlab_letsencrypt_enable: true
-        gitlab_letsencrypt_contact_emails: ["you.mail@gmail.com"]
   post_tasks:
     - name: Display /etc/gitlab/initial_root_password contents
       command: cat /etc/gitlab/initial_root_password
@@ -17,9 +14,3 @@
     - name: Print to console initial_root_password
       debug:
         msg: "{{ initial_root_password.stdout_lines }}"
-    - name: Display users
-      debug:
-        msg: "{{ item[0] }}"
-      loop:
-        - "{{ gitlab_letsencrypt_contact_emails }}"
-
