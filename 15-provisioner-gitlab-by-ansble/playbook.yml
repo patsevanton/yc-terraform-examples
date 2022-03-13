@@ -1,6 +1,6 @@
 - hosts: gitlab
-  environment:
-    GITLAB_ROOT_PASSWORD: source_me_from_secret_manager
+  # environment:
+  #   GITLAB_ROOT_PASSWORD: source_me_from_secret_manager
   become: yes
   pre_tasks:
     - name: Update apt cache.
