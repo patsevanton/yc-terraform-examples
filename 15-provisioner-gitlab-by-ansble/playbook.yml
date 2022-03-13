@@ -9,7 +9,7 @@
     - role: geerlingguy.gitlab
       vars:
         gitlab_letsencrypt_enable: true
-        gitlab_letsencrypt_contact_emails: ["you.mail@mail.com"]
+        gitlab_letsencrypt_contact_emails: ["you.mail@gmail.com"]
   post_tasks:
     - name: Display /etc/gitlab/initial_root_password contents
       command: cat /etc/gitlab/initial_root_password
