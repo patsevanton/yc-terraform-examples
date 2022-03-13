@@ -72,7 +72,7 @@ data "template_file" "host_ini" {
   template = "${file("host_ini.tmpl")}"
   vars = {
     hostname           = var.hostname
-    gitlab_domain      = var.gitlab_domain
+    gitlab_external_url  = var.gitlab_external_url
     public_ip          = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
   }
 }
@@ -86,7 +86,7 @@ data "template_file" "inventory_yml" {
   template = "${file("inventory_yml.tmpl")}"
   vars = {
     hostname           = var.hostname
-    gitlab_domain      = var.gitlab_domain
+    gitlab_external_url  = var.gitlab_external_url
     public_ip          = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
   }
 }

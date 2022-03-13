@@ -6,7 +6,7 @@
       when: ansible_os_family == 'Debian'
       changed_when: false
   roles:
-    - role: geerlingguy.gitlab
+    - role: alvistack.gitlab_ce
       vars:
         gitlab_letsencrypt_enable: true
         gitlab_letsencrypt_contact_emails: ["you.mail@gmail.com"]
