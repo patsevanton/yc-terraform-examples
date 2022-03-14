@@ -19,12 +19,17 @@ variable "yc_zone" {
   default = "ru-central1-c"
 }
 
+variable "hostname" {
+    type = string
+    description = "hostname"
+}
+
 variable "gitlab_external_url" {
     type = string
     description = "gitlab_external_url"
 }
 
-variable "hostname" {
+variable "domain" {
     type = string
-    description = "hostname"
+    description = "domain"
 }

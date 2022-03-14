@@ -24,7 +24,6 @@ resource "yandex_compute_instance" "gitlab" {
   network_interface {
     subnet_id      = yandex_vpc_subnet.subnet-1.id
     nat            = true
-    nat_ip_address = "51.250.37.126"
   }
 
   metadata = {
@@ -74,6 +73,7 @@ data "template_file" "host_ini" {
     hostname           = var.hostname
     gitlab_external_url  = var.gitlab_external_url
     public_ip          = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
+    domain             = var.domain
   }
 }
 
@@ -88,5 +88,6 @@ data "template_file" "inventory_yml" {
     hostname           = var.hostname
     gitlab_external_url  = var.gitlab_external_url
     public_ip          = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
+    domain             = var.domain
   }
 }
