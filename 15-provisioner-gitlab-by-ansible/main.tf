@@ -10,12 +10,12 @@ resource "yandex_compute_instance" "gitlab" {
 
   resources {
     cores  = 2
-    memory = 10
+    memory = 8
   }
 
   boot_disk {
     initialize_params {
-      size     = 40
+      size     = 10
       type     = "network-ssd"
       image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
