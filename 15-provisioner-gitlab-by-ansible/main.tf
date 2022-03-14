@@ -15,7 +15,7 @@ resource "yandex_compute_instance" "gitlab" {
 
   boot_disk {
     initialize_params {
-      size     = 10
+      size     = 20
       type     = "network-ssd"
       image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
