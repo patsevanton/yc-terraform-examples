@@ -17,7 +17,7 @@ resource "yandex_compute_instance" "active_directory" {
 
   resources {
     cores  = 2
-    memory = 6
+    memory = 4
   }
 
   boot_disk {
