@@ -6,7 +6,7 @@
       when: ansible_os_family == 'Debian'
       changed_when: false
   roles:
-    - role: robertdebock.gitlab
+    - role: lean_delivery.gitlab
   post_tasks:
     - name: Display /etc/gitlab/initial_root_password contents
       command: cat /etc/gitlab/initial_root_password
