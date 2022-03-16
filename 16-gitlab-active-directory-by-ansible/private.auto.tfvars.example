@@ -1,0 +1,8 @@
+yc_token         = ""
+yc_cloud_id      = ""
+yc_folder_id     = ""
+yc_zone          = ""
+windows_password = ""
+hostname         = ""
+pdc_domain       = ""
+pdc_domain_path  = ""
