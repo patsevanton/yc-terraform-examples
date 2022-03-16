@@ -117,12 +117,12 @@ resource "yandex_vpc_subnet" "subnet-1" {
 }
 
 # Output values
-output "public_ip" {
+output "public_ip_pdc" {
   description = "Public IP address for active directory"
   value = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
 }
 
-output "public_ip" {
+output "public_ip_gitlab" {
   description = "Public IP address for gitlab"
   value = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
 }
