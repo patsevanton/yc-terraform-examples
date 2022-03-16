@@ -3,3 +3,13 @@
     - role: justin_p.posh5
     - role: justin_p.wincom
     - role: justin_p.pdc
+
+- hosts: gitlab
+  become: yes
+  pre_tasks:
+    - name: Update apt cache.
+      apt: update_cache=true cache_valid_time=600
+      when: ansible_os_family == 'Debian'
+      changed_when: false
+  roles:
+    - role: robertdebock.gitlab

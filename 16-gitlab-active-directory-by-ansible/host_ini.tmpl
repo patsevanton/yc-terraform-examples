@@ -1,5 +1,5 @@
 [windows]
-"${hostname}" ansible_host="${public_ip}"
+"${pdc_hostname}" ansible_host="${public_ip_pdc}"
 
 [windows:vars]
 ansible_port=5986
@@ -11,3 +11,23 @@ ansible_password="${windows_password}"
 pdc_administrator_password: "${windows_password}"
 pdc_domain: "${pdc_domain}"
 pdc_domain_path: "${pdc_domain_path}"
+
+[gitlab]
+"${gitlab_hostname}" ansible_host="${public_ip_gitlab}"
+
+[gitlab:vars]
+gitlab_external_url="https://${gitlab_hostname}.${public_ip_gitlab}.${letsencrypt_domain}"
+ansible_user=ubuntu
+ansible_ssh_private_key_file=~/.ssh/id_rsa
+gitlab_letsencrypt=yes
+gitlab_letsencrypt_contact_emails:
+  - you.email@gmail.com
+gitlab_letsencrypt_group=root
+gitlab_letsencrypt_key_size=2048
+gitlab_letsencrypt_owner=root
+gitlab_letsencrypt_wwwroot=/var/opt/gitlab/nginx/www
+gitlab_letsencrypt_auto_renew=yes
+gitlab_letsencrypt_auto_renew_hour=0
+gitlab_letsencrypt_auto_renew_minute=nil
+gitlab_letsencrypt_auto_renew_day_of_month=nil
+gitlab_letsencrypy_auto_renew_log_directory=/var/log/gitlab/lets-encrypt

@@ -2,7 +2,12 @@ yc_token         = ""
 yc_cloud_id      = ""
 yc_folder_id     = ""
 yc_zone          = ""
+
 windows_password = ""
-hostname         = ""
+pdc_hostname         = ""
 pdc_domain       = ""
 pdc_domain_path  = ""
+
+gitlab_hostname     = "gitlab"
+gitlab_external_url = ""
+letsencrypt_domain  = "sslip.io"

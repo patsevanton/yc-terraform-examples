@@ -24,9 +24,14 @@ variable "windows_password" {
     description = "Password for Windows"
 }
 
-variable "hostname" {
+variable "pdc_hostname" {
     type = string
-    description = "hostname"
+    description = "pdc_hostname"
+}
+
+variable "gitlab_hostname" {
+    type = string
+    description = "gitlab_hostname"
 }
 
 variable "pdc_domain" {
@@ -37,4 +42,14 @@ variable "pdc_domain" {
 variable "pdc_domain_path" {
     type = string
     description = "pdc_domain_path"
+}
+
+variable "gitlab_external_url" {
+    type = string
+    description = "gitlab_external_url"
+}
+
+variable "letsencrypt_domain" {
+    type = string
+    description = "letsencrypt_domain"
 }
