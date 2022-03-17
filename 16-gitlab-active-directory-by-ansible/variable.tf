@@ -53,3 +53,9 @@ variable "letsencrypt_domain" {
     type = string
     description = "letsencrypt_domain"
 }
+
+variable "pswd_gitlab_ldap_sync" {
+    type = string
+    description = "pswd_gitlab_ldap_sync"
+}
+

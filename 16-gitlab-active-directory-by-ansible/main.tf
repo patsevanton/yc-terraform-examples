@@ -144,6 +144,7 @@ data "template_file" "host_ini" {
     gitlab_external_url  = var.gitlab_external_url
     public_ip_gitlab    = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
     letsencrypt_domain  = var.letsencrypt_domain
+    pswd_gitlab_ldap_sync = var.pswd_gitlab_ldap_sync
   }
 }
 
@@ -164,6 +165,7 @@ data "template_file" "inventory_yml" {
     gitlab_external_url  = var.gitlab_external_url
     public_ip_gitlab   = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
     letsencrypt_domain             = var.letsencrypt_domain
+    pswd_gitlab_ldap_sync = var.pswd_gitlab_ldap_sync
   }
 }
 
