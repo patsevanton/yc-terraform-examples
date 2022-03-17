@@ -69,8 +69,8 @@ resource "yandex_compute_instance" "gitlab" {
   hostname    = var.gitlab_hostname
 
   resources {
-    cores  = 4
-    memory = 12
+    cores  = 2
+    memory = 8
   }
 
   boot_disk {
