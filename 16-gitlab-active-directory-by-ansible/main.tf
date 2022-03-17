@@ -163,7 +163,7 @@ data "template_file" "inventory_yml" {
     gitlab_hostname    = var.gitlab_hostname
     gitlab_external_url  = var.gitlab_external_url
     public_ip_gitlab   = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
-    domain             = var.domain
+    letsencrypt_domain             = var.letsencrypt_domain
   }
 }
 
