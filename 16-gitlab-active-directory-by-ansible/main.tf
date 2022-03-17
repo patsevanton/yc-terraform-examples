@@ -69,13 +69,13 @@ resource "yandex_compute_instance" "gitlab" {
   hostname    = var.gitlab_hostname
 
   resources {
-    cores  = 2
-    memory = 8
+    cores  = 4
+    memory = 12
   }
 
   boot_disk {
     initialize_params {
-      size     = 20
+      size     = 40
       type     = "network-ssd"
       image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
