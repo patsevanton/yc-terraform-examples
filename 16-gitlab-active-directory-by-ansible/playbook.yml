@@ -3,6 +3,13 @@
     - role: justin_p.posh5
     - role: justin_p.wincom
     - role: justin_p.pdc
+  post_tasks:
+    - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
+      community.windows.win_domain_user:
+        name: gitlab_ldap_sync
+        password: "{{ pswd_gitlab_ldap_sync }}"
+        state: present
+        path: "ou=Users,dc=ad,dc=domain,dc=test"
 
 - hosts: gitlab
   become: yes
