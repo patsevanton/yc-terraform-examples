@@ -9,7 +9,7 @@
         name: gitlab_ldap_sync
         password: "{{ pswd_gitlab_ldap_sync }}"
         state: present
-        path: "ou=Users,dc=domain,dc=test"
+        path: "cn=Users,dc=ad,dc=domain,dc=test"
 
 - hosts: gitlab
   become: yes
