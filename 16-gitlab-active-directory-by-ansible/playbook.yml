@@ -21,9 +21,6 @@
         password: "{{ pswd_test_user_in_pdc }}"
         state: present
         path: ou=GitlabUsers,dc=ad,dc=domain,dc=test
-        # groups_action: add
-        # groups:
-        #   - GitlabUsers
 
 - hosts: gitlab
   become: yes
