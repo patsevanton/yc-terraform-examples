@@ -30,4 +30,4 @@
       when: ansible_os_family == 'Debian'
       changed_when: false
   roles:
-    - role: robertdebock.gitlab
+    - role: buluma.gitlab
