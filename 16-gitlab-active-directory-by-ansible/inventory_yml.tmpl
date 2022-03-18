@@ -54,5 +54,6 @@ all:
             allow_username_or_email_login: no
             lowercase_usernames: no
             block_auto_created_users: no
-            base: "DC=ad,DC=domain,DC=test"
-            user_filter: "(memberof=OU=GitlabUsers,DC=ad,DC=domain,DC=test)"
+            base: "OU=GitlabUsers,DC=ad,DC=domain,DC=test"
+            user_filter: ""
+
