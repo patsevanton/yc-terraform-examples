@@ -5,7 +5,7 @@ data "yandex_compute_image" "windows-2022-dc-gvlk" {
 data "template_file" "userdata_win" {
   template = file("user_data.tmpl")
   vars = {
-    windows_password   = var.windows_password
+    windows_password = var.windows_password
   }
 }
 
@@ -34,20 +34,20 @@ resource "yandex_compute_instance" "active_directory" {
   }
 
   metadata = {
-    user-data = data.template_file.userdata_win.rendered
+    user-data          = data.template_file.userdata_win.rendered
     serial-port-enable = 1
   }
 
   provisioner "remote-exec" {
     connection {
-      type      = "winrm"
-      user      = "Administrator"
-      host      = self.network_interface.0.nat_ip_address
-      password  = var.windows_password
-      https     = true
-      port      = 5986
-      insecure  = true
-      timeout   = "15m"
+      type     = "winrm"
+      user     = "Administrator"
+      host     = self.network_interface.0.nat_ip_address
+      password = var.windows_password
+      https    = true
+      port     = 5986
+      insecure = true
+      timeout  = "15m"
     }
 
     inline = [
@@ -82,8 +82,8 @@ resource "yandex_compute_instance" "gitlab" {
   }
 
   network_interface {
-    subnet_id      = yandex_vpc_subnet.subnet-1.id
-    nat            = true
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = true
   }
 
   metadata = {
@@ -95,7 +95,7 @@ resource "yandex_compute_instance" "gitlab" {
       type        = "ssh"
       user        = "ubuntu"
       host        = self.network_interface.0.nat_ip_address
-      private_key = "${file("~/.ssh/id_rsa")}"
+      private_key = file("~/.ssh/id_rsa")
     }
 
     inline = [
@@ -110,61 +110,61 @@ resource "yandex_vpc_network" "network-1" {
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {
-  name       = "subnet1"
-  zone       = "ru-central1-c"
-  network_id = yandex_vpc_network.network-1.id
+  name           = "subnet1"
+  zone           = "ru-central1-c"
+  network_id     = yandex_vpc_network.network-1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
 }
 
 # Output values
 output "public_ip_pdc" {
   description = "Public IP address for active directory"
-  value = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
+  value       = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
 }
 
 output "public_ip_gitlab" {
   description = "Public IP address for gitlab"
-  value = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
+  value       = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
 }
 
 resource "local_file" "host_ini" {
-  content  = "${data.template_file.host_ini.rendered}"
+  content  = data.template_file.host_ini.rendered
   filename = "host.ini"
 }
 
 data "template_file" "host_ini" {
-  template = "${file("host_ini.tmpl")}"
+  template = file("host_ini.tmpl")
   vars = {
-    windows_password   = var.windows_password
-    pdc_hostname           = var.pdc_hostname
-    pdc_domain         = var.pdc_domain
-    pdc_domain_path    = var.pdc_domain_path
-    public_ip_pdc          = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
-    gitlab_hostname    = var.gitlab_hostname
-    gitlab_external_url  = var.gitlab_external_url
-    public_ip_gitlab    = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
-    letsencrypt_domain  = var.letsencrypt_domain
+    windows_password      = var.windows_password
+    pdc_hostname          = var.pdc_hostname
+    pdc_domain            = var.pdc_domain
+    pdc_domain_path       = var.pdc_domain_path
+    public_ip_pdc         = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
+    gitlab_hostname       = var.gitlab_hostname
+    gitlab_external_url   = var.gitlab_external_url
+    public_ip_gitlab      = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
+    letsencrypt_domain    = var.letsencrypt_domain
     pswd_gitlab_ldap_sync = var.pswd_gitlab_ldap_sync
   }
 }
 
 resource "local_file" "inventory_yml" {
-  content  = "${data.template_file.inventory_yml.rendered}"
+  content  = data.template_file.inventory_yml.rendered
   filename = "inventory.yml"
 }
 
 data "template_file" "inventory_yml" {
-  template = "${file("inventory_yml.tmpl")}"
+  template = file("inventory_yml.tmpl")
   vars = {
-    windows_password   = var.windows_password
-    pdc_hostname           = var.pdc_hostname
-    pdc_domain         = var.pdc_domain
-    pdc_domain_path    = var.pdc_domain_path
-    public_ip_pdc          = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
-    gitlab_hostname    = var.gitlab_hostname
-    gitlab_external_url  = var.gitlab_external_url
-    public_ip_gitlab   = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
-    letsencrypt_domain             = var.letsencrypt_domain
+    windows_password      = var.windows_password
+    pdc_hostname          = var.pdc_hostname
+    pdc_domain            = var.pdc_domain
+    pdc_domain_path       = var.pdc_domain_path
+    public_ip_pdc         = yandex_compute_instance.active_directory.network_interface.0.nat_ip_address
+    gitlab_hostname       = var.gitlab_hostname
+    gitlab_external_url   = var.gitlab_external_url
+    public_ip_gitlab      = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
+    letsencrypt_domain    = var.letsencrypt_domain
     pswd_gitlab_ldap_sync = var.pswd_gitlab_ldap_sync
   }
 }

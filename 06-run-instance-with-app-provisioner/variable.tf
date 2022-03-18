@@ -1,22 +1,22 @@
 variable "yc_token" {
-  type = string
+  type        = string
   description = "Yandex Cloud API key"
 }
 
 variable "yc_cloud_id" {
-  type = string
+  type        = string
   description = "Yandex Cloud id"
 }
 
 variable "yc_folder_id" {
-  type = string
+  type        = string
   description = "Yandex Cloud folder id"
 }
 
 variable "yc_zone" {
-  type = string
+  type        = string
   description = "Yandex Cloud compute default zone"
-  default = "ru-central1-c"
+  default     = "ru-central1-c"
 }
 
 variable "public_key_path" {

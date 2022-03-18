@@ -17,9 +17,9 @@ resource "yandex_resourcemanager_folder_iam_member" "sa-compute-admin-permission
 
 resource "yandex_compute_instance" "vm-1" {
 
-  name                = "linux-vm"
-  platform_id         = "standard-v3"
-  service_account_id  = yandex_iam_service_account.sa-compute-admin.id
+  name               = "linux-vm"
+  platform_id        = "standard-v3"
+  service_account_id = yandex_iam_service_account.sa-compute-admin.id
 
   resources {
     cores  = 2
@@ -47,8 +47,8 @@ resource "yandex_vpc_network" "network-1" {
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {
-  name       = "subnet1"
-  zone       = "ru-central1-c"
-  network_id = yandex_vpc_network.network-1.id
+  name           = "subnet1"
+  zone           = "ru-central1-c"
+  network_id     = yandex_vpc_network.network-1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
 }

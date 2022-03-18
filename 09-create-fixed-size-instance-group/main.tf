@@ -16,10 +16,10 @@ resource "yandex_resourcemanager_folder_iam_member" "sa-compute-admin-permission
 }
 
 resource "yandex_compute_instance_group" "ig-1" {
-  name                = "fixed-ig"
-  folder_id           = var.yc_folder_id
-  service_account_id  = yandex_iam_service_account.sa-compute-admin.id
-  depends_on          = [yandex_resourcemanager_folder_iam_member.sa-compute-admin-permissions]
+  name               = "fixed-ig"
+  folder_id          = var.yc_folder_id
+  service_account_id = yandex_iam_service_account.sa-compute-admin.id
+  depends_on         = [yandex_resourcemanager_folder_iam_member.sa-compute-admin-permissions]
   instance_template {
     platform_id = "standard-v3"
     resources {
@@ -55,7 +55,7 @@ resource "yandex_compute_instance_group" "ig-1" {
 
   deploy_policy {
     max_unavailable = 1
-    max_expansion = 0
+    max_expansion   = 0
   }
 }
 
@@ -64,8 +64,8 @@ resource "yandex_vpc_network" "network-1" {
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {
-  name       = "subnet1"
-  zone       = "ru-central1-c"
-  network_id = yandex_vpc_network.network-1.id
+  name           = "subnet1"
+  zone           = "ru-central1-c"
+  network_id     = yandex_vpc_network.network-1.id
   v4_cidr_blocks = ["192.168.10.0/24"]
 }

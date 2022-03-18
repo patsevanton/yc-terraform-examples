@@ -32,13 +32,13 @@ resource "yandex_storage_bucket" "test-bucket-anton-patsev" {
 ## Output values
 output "access_key_sa_storage_admin_for_test_bucket" {
   description = "access_key sa-storage-admin for test-bucket-anton-patsev"
-  value = yandex_storage_bucket.test-bucket-anton-patsev.access_key
-  sensitive = true
+  value       = yandex_storage_bucket.test-bucket-anton-patsev.access_key
+  sensitive   = true
 }
 
 output "secret_key_sa_storage_admin_for_test_bucket" {
   description = "secret_key sa-storage-admin for test-bucket-anton-patsev"
-  value = yandex_storage_bucket.test-bucket-anton-patsev.secret_key
-  sensitive = true
+  value       = yandex_storage_bucket.test-bucket-anton-patsev.secret_key
+  sensitive   = true
 }
 
