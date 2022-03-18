@@ -145,6 +145,8 @@ data "template_file" "host_ini" {
     public_ip_gitlab      = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
     letsencrypt_domain    = var.letsencrypt_domain
     pswd_gitlab_ldap_sync = var.pswd_gitlab_ldap_sync
+    pswd_test_user_in_pdc = var.pswd_test_user_in_pdc
+    
   }
 }
 
@@ -166,6 +168,8 @@ data "template_file" "inventory_yml" {
     public_ip_gitlab      = yandex_compute_instance.gitlab.network_interface.0.nat_ip_address
     letsencrypt_domain    = var.letsencrypt_domain
     pswd_gitlab_ldap_sync = var.pswd_gitlab_ldap_sync
+    pswd_test_user_in_pdc = var.pswd_test_user_in_pdc
+    
   }
 }
 

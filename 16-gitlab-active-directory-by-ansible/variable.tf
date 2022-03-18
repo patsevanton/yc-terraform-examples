@@ -59,3 +59,8 @@ variable "pswd_gitlab_ldap_sync" {
   description = "pswd_gitlab_ldap_sync"
 }
 
+variable "pswd_test_user_in_pdc" {
+  type        = string
+  description = "pswd_test_user_in_pdc"
+}
+

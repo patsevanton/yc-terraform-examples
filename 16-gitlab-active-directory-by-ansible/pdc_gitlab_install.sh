@@ -11,7 +11,7 @@ ansible-galaxy install justin_p.wincom
 ansible-galaxy install justin_p.pdc
 ansible-galaxy collection install community.windows
 ansible-galaxy install robertdebock.gitlab
-ansible-playbook -i inventory.yml playbook.yml
+ansible-playbook -vvv -i inventory.yml playbook.yml
 end_time=`date +%s`
 date2=$(date +"%s")
 echo "###############"

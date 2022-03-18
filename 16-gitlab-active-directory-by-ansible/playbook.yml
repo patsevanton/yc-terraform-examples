@@ -4,12 +4,26 @@
     - role: justin_p.wincom
     - role: justin_p.pdc
   post_tasks:
-    - name: Ensure user bob is present in OU ou=test,dc=domain,dc=local
+    - name: Ensure user gitlab_ldap_sync is present
       community.windows.win_domain_user:
         name: gitlab_ldap_sync
         password: "{{ pswd_gitlab_ldap_sync }}"
         state: present
-        path: "cn=Users,dc=ad,dc=domain,dc=test"
+        path: cn=Users,dc=ad,dc=domain,dc=test
+    - name: Ensure OU Gitlab Users is present
+      community.windows.win_domain_ou:
+        name: GitlabUsers
+        path: dc=ad,dc=domain,dc=test
+        state: present
+    - name: Ensure user test_user_in_pdc is present
+      community.windows.win_domain_user:
+        name: test_user_in_pdc
+        password: "{{ pswd_test_user_in_pdc }}"
+        state: present
+        path: ou=GitlabUsers,dc=ad,dc=domain,dc=test
+        # groups_action: add
+        # groups:
+        #   - GitlabUsers
 
 - hosts: gitlab
   become: yes

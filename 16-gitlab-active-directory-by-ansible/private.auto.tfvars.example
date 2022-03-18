@@ -8,6 +8,7 @@ pdc_hostname         = ""
 pdc_domain       = ""
 pdc_domain_path  = ""
 pswd_gitlab_ldap_sync = ""
+pswd_test_user_in_pdc = ""
 
 gitlab_hostname     = "gitlab"
 gitlab_external_url = ""
