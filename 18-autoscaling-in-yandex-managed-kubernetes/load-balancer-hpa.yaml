@@ -1,0 +1,59 @@
+---
+### Deployment
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: my-nginx-deployment-hpa
+  labels:
+    app: nginx-hpa
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nginx-hpa
+  template:
+    metadata:
+      name: nginx-hpa
+      labels:
+        app: nginx-hpa
+    spec:
+      containers:
+        - name: nginx-hpa
+          image: k8s.gcr.io/hpa-example
+          resources:
+            requests:
+              memory: "256Mi"
+              cpu: "500m"
+            limits:
+              memory: "500Mi"
+              cpu: "1"
+ 
+---
+### Service
+apiVersion: v1
+kind: Service
+metadata:
+  name: my-loadbalancer-hpa
+spec:
+  selector:
+    app: nginx-hpa
+  ports:
+    - protocol: TCP
+      port: 80
+      targetPort: 80
+  type: LoadBalancer
+ 
+---
+### HPA
+apiVersion: autoscaling/v1
+kind: HorizontalPodAutoscaler
+metadata:
+  name: my-hpa
+spec:
+  scaleTargetRef:
+    apiVersion: apps/v1
+    kind: Deployment
+    name: my-nginx-deployment-hpa
+  minReplicas: 1
+  maxReplicas: 5
+  targetCPUUtilizationPercentage: 20
