@@ -1,0 +1,26 @@
+name: first-fixed-group
+service_account_id: ajee54asa8g6uc9njo2e
+description: "This instance group was created from YAML config."
+instance_template:
+    platform_id: standard-v3
+    resources_spec:
+        memory: 2g
+        cores: 2
+    boot_disk_spec:
+        mode: READ_WRITE
+        disk_spec:
+            image_id: fd83n3uou8m03iq9gavu
+            type_id: network-hdd
+            size: 5g
+    network_interface_specs:
+        - network_id: enph7uka9uncogassetb
+          primary_v4_address_spec: {}
+deploy_policy:
+    max_unavailable: 1
+    max_expansion: 0
+scale_policy:
+    fixed_scale:
+        size: 2
+allocation_policy:
+    zones:
+        - zone_id: ru-central1-c
