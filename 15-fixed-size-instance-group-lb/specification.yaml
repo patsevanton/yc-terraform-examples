@@ -1,6 +1,6 @@
-name: first-fixed-group
-service_account_id: ajee54asa8g6uc9njo2e
-description: "This instance group was created from YAML config."
+name: my-group
+service_account_id: aje3paubmb8fd1klbhjl
+ 
 instance_template:
     platform_id: standard-v3
     resources_spec:
@@ -9,18 +9,32 @@ instance_template:
     boot_disk_spec:
         mode: READ_WRITE
         disk_spec:
-            image_id: fd83n3uou8m03iq9gavu
+            image_id: fd87uq4tagjupcnm376a 
             type_id: network-hdd
             size: 5g
     network_interface_specs:
-        - network_id: enph7uka9uncogassetb
-          primary_v4_address_spec: {}
+        - network_id: enprkje8ae9b74e0himb
+          primary_v4_address_spec: { one_to_one_nat_spec: { ip_version: IPV4 }}
+    scheduling_policy:
+        preemptible: true
+    metadata:
+      user-data: |-
+        #cloud-config
+          package_update: true
+          runcmd:
+            - [ apt-get, install, -y, nginx ]
+            - [/bin/bash, -c, 'source /etc/lsb-release; sed -i "s/Welcome to nginx/It is $(hostname) on $DISTRIB_DESCRIPTION/" /var/www/html/index.nginx-debian.html']
+ 
 deploy_policy:
     max_unavailable: 1
     max_expansion: 0
 scale_policy:
     fixed_scale:
-        size: 2
+        size: 3
 allocation_policy:
     zones:
-        - zone_id: ru-central1-c
+        - zone_id: ru-central1-a
+ 
+load_balancer_spec:
+    target_group_spec:
+        name: my-target-group
