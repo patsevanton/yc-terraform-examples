@@ -24,7 +24,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   metadata = {
-    ssh-keys = "ubuntu:${file(var.public_key_path)}"
+    ssh-keys = "yc-user:${file(var.public_key_path)}"
   }
 
   provisioner "remote-exec" {
