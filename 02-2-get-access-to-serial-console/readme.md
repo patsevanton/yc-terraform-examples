@@ -33,3 +33,15 @@ sudo passwd ubuntu
 ```
 ssh -t -p 9600 -o IdentitiesOnly=yes -i ~/.ssh/id_rsa epduem5sc5ru9t7ork0g.ubuntu@serialssh.cloud.yandex.net
 ```
+
+### Create virtual machine with serial-port. Default CPU 2, MEM 2GB, DISK 5GB
+```
+yc compute instance create \
+    --name first-instance \
+    --hostname first-instance \
+    --zone ru-central1-b \
+    --network-interface subnet-name=default-ru-central1-b,nat-ip-version=ipv4 \
+    --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
+    --ssh-key ~/.ssh/id_rsa.pub \
+    --metadata serial-port-enable=1
+```
