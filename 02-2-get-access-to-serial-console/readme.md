@@ -31,5 +31,5 @@ sudo passwd ubuntu
 
 ###
 ```
-ssh -t -p 9600 -o IdentitiesOnly=yes -i ~/.ssh/id_rsa <ID виртуальной машины>.<имя пользователя>@serialssh.cloud.yandex.net
+ssh -t -p 9600 -o IdentitiesOnly=yes -i ~/.ssh/id_rsa epduem5sc5ru9t7ork0g.ubuntu@serialssh.cloud.yandex.net
 ```
