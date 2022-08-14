@@ -34,15 +34,14 @@ yc compute instance get first-instance --format json | jq -r '.network_interface
 ssh yc-user@ip
 ```
 
-### Write the OS cache to disk
+### Write the OS cache to disk inside instance
 ```
 sudo sync
 ```
 
-### Freeze the file system
+### Freeze the file system inside instance
 ```
 sudo fsfreeze -f <точка монтирования>
-sudo fsfreeze -f /
 ```
 
 ### Get a list of disks in the default folder
