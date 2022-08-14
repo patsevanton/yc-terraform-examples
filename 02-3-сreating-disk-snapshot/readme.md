@@ -36,12 +36,13 @@ ssh yc-user@ip
 
 ### Write the OS cache to disk
 ```
-sync
+sudo sync
 ```
 
 ### Freeze the file system
 ```
-fsfreeze -f
+sudo fsfreeze -f <точка монтирования>
+sudo fsfreeze -f /
 ```
 
 ### Get a list of disks in the default folder
