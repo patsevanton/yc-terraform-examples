@@ -23,4 +23,4 @@ scale_policy:
         size: 2
 allocation_policy:
     zones:
-        - zone_id: ru-central1-c
+        - zone_id: ru-central1-b

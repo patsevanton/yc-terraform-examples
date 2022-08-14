@@ -46,7 +46,7 @@ allocation_policy:
     zones:
         - zone_id: ru-central1-a
         - zone_id: ru-central1-b
-        - zone_id: ru-central1-c
+        - zone_id: ru-central1-b
  
 load_balancer_spec:
     target_group_spec:

@@ -16,5 +16,5 @@ variable "yc_folder_id" {
 variable "yc_zone" {
   type        = string
   description = "Yandex Cloud compute default zone"
-  default     = "ru-central1-c"
+  default     = "ru-central1-b"
 }

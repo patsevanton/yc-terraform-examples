@@ -40,7 +40,7 @@ yc compute instance list
 yc load-balancer network-load-balancer create \
 --name lb-test \
 --region-id ru-central1 \
---listener name=test-listener,port=80,subnet-id=apatsev-ru-central1-c
+--listener name=test-listener,port=80,subnet-id=apatsev-ru-central1-b
 ```
 
 ### List virtual machine (instances)
