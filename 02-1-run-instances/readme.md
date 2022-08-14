@@ -37,6 +37,11 @@ yc compute instance create \
 yc compute instance list
 ```
 
+### Enter in instance
+```
+ssh yc-user@ip
+```
+
 ### Delete the specified virtual machine (instances)
 ```
 yc compute instance delete first-instance
@@ -48,4 +53,7 @@ Links:
  - https://vc.ru/dev/318266-kak-sekonomit-vremya-dengi-i-nervy-na-prostyh-zadachah
  - https://github.com/yandex-cloud/terraform-provider-yandex/issues/121
  - https://habr.com/ru/company/rebrainme/blog/538410/
+ 
+
+
  

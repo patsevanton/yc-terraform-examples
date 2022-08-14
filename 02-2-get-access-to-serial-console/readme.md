@@ -24,6 +24,11 @@ yc compute instance create \
 yc compute instance list
 ```
 
+### Enter in instance
+```
+ssh yc-user@ip
+```
+
 ### Set password ubuntu
 ```
 sudo passwd ubuntu
