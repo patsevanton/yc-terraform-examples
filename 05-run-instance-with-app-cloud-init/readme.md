@@ -40,6 +40,17 @@ yc compute instance create \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts
 ```
 
+### Create virtual machine (instances). Cloud-init set password for user ubuntu.
+```
+yc compute instance create \
+    --name first-instance \
+    --hostname first-instance \
+    --zone ru-central1-b \
+    --metadata-from-file user-data=cloud-init-password.yaml \
+    --network-interface subnet-name=default-ru-central1-b,nat-ip-version=ipv4 \
+    --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts
+```
+
 ### Create virtual machine (instances). SSH created by ssh-key argument. Connect by user yc-user.
 ```
 yc compute instance create \
