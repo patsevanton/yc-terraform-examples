@@ -29,14 +29,14 @@ yc compute instance list
 ssh yc-user@ip
 ```
 
-### Set password ubuntu
+### Set password yc-user
 ```
-sudo passwd ubuntu
+sudo passwd yc-user
 ```
 
 ###
 ```
-ssh -t -p 9600 -o IdentitiesOnly=yes -i ~/.ssh/id_rsa epduem5sc5ru9t7ork0g.ubuntu@serialssh.cloud.yandex.net
+ssh -t -p 9600 -o IdentitiesOnly=yes -i ~/.ssh/id_rsa epduem5sc5ru9t7ork0g.yc-user@serialssh.cloud.yandex.net
 ```
 
 ### Create virtual machine with serial-port. Default CPU 2, MEM 2GB, DISK 5GB
