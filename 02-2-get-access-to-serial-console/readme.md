@@ -25,6 +25,11 @@ yc compute instance create \
 yc compute instance list
 ```
 
+### Get public ip
+```
+yc compute instance get first-instance --format json | jq -r '.network_interfaces[].primary_v4_address.one_to_one_nat.address'
+```
+
 ### Enter in instance
 ```
 ssh yc-user@ip
