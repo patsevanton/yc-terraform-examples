@@ -34,19 +34,44 @@ yc compute instance get first-instance --format json | jq -r '.network_interface
 ssh yc-user@ip
 ```
 
+### Write the OS cache to disk
+```
 sync
-fsfreeze -f
-yc compute disk list
+```
 
+### Freeze the file system
+```
+fsfreeze -f
+```
+
+### Get a list of disks in the default folder
+```
+yc compute disk list
+```
+
+###
+```
 yc compute snapshot create \
   --name first-snapshot \
   --description "my first snapshot via CLI" \
   --disk-id fhm4aq4hvq5g3nepvt9b
-  
+```
+
+### List snapshots
+```
+yc compute snapshot list
+```
+
+### Create virtual machine from snapshot - next example
 
 ### Delete the specified virtual machine (instances)
 ```
 yc compute instance delete first-instance
+```
+
+### Delete the specified snapshot 
+```
+yc compute snapshot delete
 ```
 
 Links:
