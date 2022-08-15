@@ -4,7 +4,7 @@ data "yandex_compute_image" "ubuntu-20-04" {
 
 resource "yandex_compute_disk" "secondary_disk" {
   name = "secondary-disk"
-  type = "network-hdd"
+  type = "network-ssd"
   zone = "ru-central1-b"
   size = 5
 }
@@ -22,7 +22,7 @@ resource "yandex_compute_instance" "vm-with-2-disk" {
   boot_disk {
     initialize_params {
       size     = 10
-      type     = "network-hdd"
+      type     = "network-ssd"
       image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
   }
