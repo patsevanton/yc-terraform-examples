@@ -1,24 +1,6 @@
-### Get subnet list
-```
-yc vpc subnet list
-```
 
-### Show availability zones
-```
-yc compute zone list
-```
-
-### Create virtual machine (instances). Default CPU 2, MEM 2GB, DISK 5GB
-```
-yc compute instance create \
-    --name first-instance \
-    --hostname first-instance \
-    --zone ru-central1-b \
-    --network-interface subnet-name=default-ru-central1-b,nat-ip-version=ipv4 \
-    --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
-    --create-disk name=second-disk,size=5GB,auto-delete \
-    --ssh-key ~/.ssh/id_rsa.pub
-```
+### Create VM
+Create vm from folder `04-create-vm-with-2-disk`
 
 ### List virtual machine (instances)
 ```
@@ -27,7 +9,7 @@ yc compute instance list
 
 ### Get public ip
 ```
-yc compute instance get first-instance --format json | jq -r '.network_interfaces[].primary_v4_address.one_to_one_nat.address'
+yc compute instance get vm-with-2-disk --format json | jq -r '.network_interfaces[].primary_v4_address.one_to_one_nat.address'
 ```
 
 ### Enter in instance

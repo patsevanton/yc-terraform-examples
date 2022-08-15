@@ -4,7 +4,7 @@ data "yandex_compute_image" "ubuntu-20-04" {
 
 resource "yandex_compute_instance" "vm-02" {
 
-  name        = "linux-vm"
+  name        = "vm-02"
   platform_id = "standard-v3"
 
   resources {
