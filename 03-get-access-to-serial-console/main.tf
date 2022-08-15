@@ -2,7 +2,7 @@ data "yandex_compute_image" "ubuntu-20-04" {
   family = "ubuntu-2004-lts"
 }
 
-resource "yandex_compute_instance" "vm-1" {
+resource "yandex_compute_instance" "vm-03" {
 
   name        = "linux-vm"
   platform_id = "standard-v3"
