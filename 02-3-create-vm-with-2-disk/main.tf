@@ -4,7 +4,7 @@ data "yandex_compute_image" "ubuntu-20-04" {
 
 resource "yandex_compute_disk" "secondary_disk" {
   name     = "secondary-disk"
-  type     = "network-ssd"
+  type     = "network-hdd"
   zone     = "ru-central1-b"
   size     = 5
 }
@@ -38,7 +38,6 @@ resource "yandex_compute_instance" "vm-1" {
 
   metadata = {
     ssh-keys = "yc-user:${file("~/.ssh/id_rsa.pub")}"
-    serial-port-enable = 1
   }
 }
 
