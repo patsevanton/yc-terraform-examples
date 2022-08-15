@@ -6,6 +6,7 @@ resource "yandex_compute_instance" "vm-1" {
 
   name        = "linux-vm"
   zone        = "ru-central1-b"
+  platform_id = "standard-v3"
 
   resources {
     cores  = 2
@@ -21,8 +22,14 @@ resource "yandex_compute_instance" "vm-1" {
   network_interface {
     subnet_id  = data.yandex_vpc_subnet.default-ru-central1-b.id
     nat        = true
-    ip_address = yandex_vpc_address.addr.external_ipv4_address.0.address
+    nat_ip_address = yandex_vpc_address.addr.external_ipv4_address.0.address
   }
+
+  metadata = {
+    ssh-keys  = "ubuntu:${file(var.public_key_path)}"
+    user-data = file("cloud-init.yaml")
+  }
+  
 }
 
 data "yandex_vpc_network" "default" {
