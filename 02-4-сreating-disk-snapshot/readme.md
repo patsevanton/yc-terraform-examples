@@ -16,6 +16,7 @@ yc compute instance create \
     --zone ru-central1-b \
     --network-interface subnet-name=default-ru-central1-b,nat-ip-version=ipv4 \
     --create-boot-disk image-folder-id=standard-images,image-family=ubuntu-2004-lts \
+    --create-disk name=second-disk,size=5GB,auto-delete \
     --ssh-key ~/.ssh/id_rsa.pub
 ```
 

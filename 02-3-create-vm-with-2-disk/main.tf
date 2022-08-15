@@ -2,6 +2,12 @@ data "yandex_compute_image" "ubuntu-20-04" {
   family = "ubuntu-2004-lts"
 }
 
+resource "yandex_compute_disk" "secondary_disk" {
+  name     = "secondary-disk"
+  type     = "network-ssd"
+  zone     = "ru-central1-b"
+}
+
 resource "yandex_compute_instance" "vm-1" {
 
   name        = "linux-vm"
@@ -18,6 +24,10 @@ resource "yandex_compute_instance" "vm-1" {
       type     = "network-hdd"
       image_id = data.yandex_compute_image.ubuntu-20-04.id
     }
+  }
+
+  secondary_disk {
+    disk_id = yandex_compute_disk.secondary_disk.id
   }
 
   network_interface {
