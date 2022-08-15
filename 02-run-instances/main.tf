@@ -21,7 +21,7 @@ resource "yandex_compute_instance" "vm-02" {
   }
 
   network_interface {
-    subnet_id          = data.yandex_vpc_subnet.default-ru-central1-b.id
+    subnet_id = data.yandex_vpc_subnet.default-ru-central1-b.id
     nat       = true
   }
 

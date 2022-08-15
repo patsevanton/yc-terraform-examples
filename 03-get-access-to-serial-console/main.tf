@@ -21,12 +21,12 @@ resource "yandex_compute_instance" "vm-03" {
   }
 
   network_interface {
-    subnet_id          = data.yandex_vpc_subnet.default-ru-central1-b.id
+    subnet_id = data.yandex_vpc_subnet.default-ru-central1-b.id
     nat       = true
   }
 
   metadata = {
-    ssh-keys = "yc-user:${file("~/.ssh/id_rsa.pub")}"
+    ssh-keys           = "yc-user:${file("~/.ssh/id_rsa.pub")}"
     serial-port-enable = 1
   }
 }
