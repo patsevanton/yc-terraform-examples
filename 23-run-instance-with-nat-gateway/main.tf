@@ -9,8 +9,8 @@ resource "yandex_compute_instance" "vm-1" {
   zone        = "ru-central1-b"
 
   resources {
-    cores  = "<количество ядер vCPU>"
-    memory = "<объем RAM в ГБ>"
+    cores  = "2"
+    memory = "2"
   }
 
   boot_disk {
@@ -34,7 +34,9 @@ resource "yandex_vpc_network" "network-1" {
 }
 
 resource "yandex_vpc_subnet" "subnet-1" {
-  name       = "subnet1"
-  zone       = "ru-central1-b"
-  network_id = yandex_vpc_network.network-1.id
+  name           = "subnet1"
+  description    = "<описание подсети>"
+  v4_cidr_blocks = ["192.168.10.0/24"]
+  zone           = "ru-central1-b"
+  network_id     = yandex_vpc_network.network-1.id
 }
