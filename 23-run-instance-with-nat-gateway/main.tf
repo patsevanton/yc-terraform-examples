@@ -6,10 +6,11 @@ resource "yandex_compute_instance" "vm-1" {
 
   name        = "linux-vm"
   platform_id = "standard-v3"
+  zone        = "ru-central1-b"
 
   resources {
-    cores  = 2
-    memory = 2
+    cores  = "<количество ядер vCPU>"
+    memory = "<объем RAM в ГБ>"
   }
 
   boot_disk {
@@ -19,7 +20,8 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet1.id
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = true
   }
 
   metadata = {
@@ -27,29 +29,12 @@ resource "yandex_compute_instance" "vm-1" {
   }
 }
 
-resource "yandex_vpc_network" "network1" {
+resource "yandex_vpc_network" "network-1" {
   name = "network1"
 }
 
-resource "yandex_vpc_subnet" "subnet1" {
-  name           = "subnet1"
-  zone           = "ru-central1-b"
-  network_id     = yandex_vpc_network.network1.id
-  v4_cidr_blocks = ["192.168.10.0/24"]
-  route_table_id = yandex_vpc_route_table.rt.id
-}
-
-resource "yandex_vpc_gateway" "nat_gateway" {
-  name = "test-gateway"
-  shared_egress_gateway {}
-}
-
-resource "yandex_vpc_route_table" "rt" {
-  name       = "test-route-table"
-  network_id = yandex_vpc_network.network1.id
-
-  static_route {
-    destination_prefix = "0.0.0.0/0"
-    gateway_id         = yandex_vpc_gateway.nat_gateway.id
-  }
+resource "yandex_vpc_subnet" "subnet-1" {
+  name       = "subnet1"
+  zone       = "ru-central1-b"
+  network_id = yandex_vpc_network.network-1.id
 }
