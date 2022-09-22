@@ -6,11 +6,10 @@ resource "yandex_compute_instance" "vm-1" {
 
   name        = "linux-vm"
   platform_id = "standard-v3"
-  zone        = "ru-central1-b"
 
   resources {
-    cores  = "2"
-    memory = "2"
+    cores  = 2
+    memory = 2
   }
 
   boot_disk {
@@ -20,8 +19,7 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   network_interface {
-    subnet_id = yandex_vpc_subnet.subnet-1.id
-    nat       = true
+    subnet_id = yandex_vpc_subnet.subnet1.id
   }
 
   metadata = {
@@ -29,14 +27,13 @@ resource "yandex_compute_instance" "vm-1" {
   }
 }
 
-resource "yandex_vpc_network" "network-1" {
+resource "yandex_vpc_network" "network1" {
   name = "network1"
 }
 
-resource "yandex_vpc_subnet" "subnet-1" {
+resource "yandex_vpc_subnet" "subnet1" {
   name           = "subnet1"
-  description    = "<описание подсети>"
-  v4_cidr_blocks = ["192.168.10.0/24"]
   zone           = "ru-central1-b"
-  network_id     = yandex_vpc_network.network-1.id
+  network_id     = yandex_vpc_network.network1.id
+  v4_cidr_blocks = ["192.168.10.0/24"]
 }
