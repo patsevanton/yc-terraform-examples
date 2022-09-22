@@ -5,7 +5,6 @@ data "yandex_compute_image" "ubuntu-20-04" {
 resource "yandex_compute_instance" "vm-1" {
 
   name        = "linux-vm"
-  zone        = "ru-central1-b"
   platform_id = "standard-v3"
 
   resources {
@@ -20,29 +19,22 @@ resource "yandex_compute_instance" "vm-1" {
   }
 
   network_interface {
-    subnet_id  = data.yandex_vpc_subnet.default-ru-central1-b.id
-    nat        = true
-    nat_ip_address = yandex_vpc_address.addr.external_ipv4_address.0.address
+    subnet_id = yandex_vpc_subnet.subnet-1.id
+    nat       = true
   }
 
   metadata = {
-    ssh-keys  = "ubuntu:${file(var.public_key_path)}"
-    user-data = file("cloud-init.yaml")
+    ssh-keys = "yc-user:${file("~/.ssh/id_rsa.pub")}"
   }
-  
 }
 
-data "yandex_vpc_network" "default" {
-  name = "default"
+resource "yandex_vpc_network" "network-1" {
+  name = "network1"
 }
 
-data "yandex_vpc_subnet" "default-ru-central1-b" {
-  name = "default-ru-central1-b"
-}
-
-resource "yandex_vpc_address" "addr" {
-  name = "static-ip"
-  external_ipv4_address {
-    zone_id = "ru-central1-b"
-  }
+resource "yandex_vpc_subnet" "subnet-1" {
+  name           = "subnet1"
+  zone           = "ru-central1-b"
+  network_id     = yandex_vpc_network.network-1.id
+  v4_cidr_blocks = ["192.168.10.0/24"]
 }
